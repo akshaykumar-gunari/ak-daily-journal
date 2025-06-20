@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AK's Daily Learning Journal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            min-height: 100vh;
+            color: #333;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.05)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.03)"/><circle cx="50" cy="10" r="0.5" fill="rgba(255,255,255,0.04)"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grain)"/></svg>');
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            color: white;
+            position: relative;
+        }
+
+        .profile-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .profile-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            border: 4px solid rgba(255,255,255,0.3);
+            backdrop-filter: blur(10px);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .profile-info h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.4);
+            background: linear-gradient(45deg, #ffffff, #f0f8ff, #e6f3ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .description {
+            font-size: 1rem;
+            opacity: 0.9;
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.7;
+            background: rgba(255,255,255,0.1);
+            padding: 25px;
+            border-radius: 15px;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.2);
+            text-align: left;
+        }
+
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 20px;
+            padding: 8px;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+
+        .tab-btn {
+            padding: 15px 30px;
+            border: none;
+            background: transparent;
+            color: white;
+            cursor: pointer;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tab-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .tab-btn:hover::before {
+            left: 100%;
+        }
+
+        .tab-btn.active {
+            background: rgba(255,255,255,0.25);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            transform: translateY(-2px);
+        }
+
+        .tab-content {
+            display: none;
+            background: rgba(255,255,255,0.95);
+            border-radius: 25px;
+            padding: 30px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: slideUp 0.6s ease;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .calendar-container {
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 30px;
+            align-items: start;
+        }
+
+        .calendar-section {
+            background: linear-gradient(135deg, #ffffff, #f8fafc);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,255,0.8);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .calendar-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding: 0 10px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .month-nav {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 18px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .nav-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .month-year {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2d3748;
+            min-width: 200px;
+            text-align: center;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .year-selector {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .year-input {
+            background: linear-gradient(135deg, #f7fafc, #edf2f7);
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 8px 12px;
+            font-size: 1rem;
+            width: 80px;
+            text-align: center;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .year-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .date-jump {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-left: 15px;
+        }
+
+        .date-input {
+            background: linear-gradient(135deg, #f7fafc, #edf2f7);
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 8px 12px;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+        }
+
+        .date-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .jump-btn {
+            background: linear-gradient(135deg, #48bb78, #38a169);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .jump-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(72, 187, 120, 0.3);
+        }
+
+        .calendar {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 2px;
+            background: linear-gradient(135deg, #e2e8f0, #cbd5e0);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: inset 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .day-header {
+            text-align: center;
+            padding: 15px 8px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: #4a5568;
+            background: linear-gradient(135deg, #f7fafc, #edf2f7);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .day {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            background: linear-gradient(135deg, #ffffff, #f7fafc);
+            font-size: 1rem;
+            font-weight: 600;
+            min-height: 45px;
+            border: 2px solid transparent;
+        }
+
+        .day:hover {
+            background: linear-gradient(135deg, #e6fffa, #b2f5ea);
+            transform: scale(1.1);
+            z-index: 2;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            border-radius: 8px;
+        }
+
+        .day.other-month {
+            color: #a0aec0;
+            background: linear-gradient(135deg, #f7fafc, #edf2f7);
+        }
+
+        .day.other-month:hover {
+            background: linear-gradient(135deg, #edf2f7, #e2e8f0);
+        }
+
+        .day.has-entry {
+            background: linear-gradient(135deg, #48bb78, #38a169);
+            color: white;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(72, 187, 120, 0.3);
+        }
+
+        .day.has-entry:hover {
+            background: linear-gradient(135deg, #38a169, #2f855a);
+            box-shadow: 0 8px 25px rgba(72, 187, 120, 0.4);
+        }
+
+        .day.today {
+            border: 3px solid #f56565;
+            font-weight: 900;
+            animation: todayPulse 2s infinite;
+        }
+
+        @keyframes todayPulse {
+            0%, 100% { border-color: #f56565; }
+            50% { border-color: #fc8181; }
+        }
+
+        .day.selected {
+            background: linear-gradient(135deg, #667eea, #764ba2) !important;
+            color: white !important;
+            font-weight: 900;
+            transform: scale(1.15);
+            z-index: 3;
+            border-radius: 8px;
+            box-shadow: 0 12px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .entry-count {
+            position: absolute;
+            top: 3px;
+            right: 3px;
+            background: linear-gradient(135deg, #f56565, #e53e3e);
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 900;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        .activity-panel {
+            background: linear-gradient(135deg, #ffffff, #f8fafc);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 20px;
+            border: 1px solid rgba(255,255,255,0.8);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .activity-panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+        }
+
+        .activity-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #e2e8f0;
+        }
+
+        .activity-date {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #2d3748;
+        }
+
+        .activity-day {
+            font-size: 1rem;
+            color: #4a5568;
+            background: linear-gradient(135deg, #e6fffa, #b2f5ea);
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-weight: 600;
+        }
+
+        .activity-content {
+            max-height: 450px;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: #cbd5e0 transparent;
+        }
+
+        .activity-content::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .activity-content::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .activity-content::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #cbd5e0, #a0aec0);
+            border-radius: 3px;
+        }
+
+        .learning-item {
+            margin-bottom: 15px;
+            padding: 18px 20px;
+            background: linear-gradient(135deg, #f7fafc, #edf2f7);
+            border-radius: 12px;
+            border-left: 5px solid #667eea;
+            font-size: 1rem;
+            line-height: 1.6;
+            transition: all 0.2s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .learning-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+
+        .learning-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .learning-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .no-activity {
+            text-align: center;
+            color: #718096;
+            font-style: italic;
+            padding: 50px 25px;
+            background: linear-gradient(135deg, #f7fafc, #edf2f7);
+            border-radius: 15px;
+            border: 2px dashed #cbd5e0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.6s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.4);
+        }
+
+        .stat-card:hover::before {
+            animation: shine 0.6s ease;
+        }
+
+        @keyframes shine {
+            0% { left: -50%; }
+            100% { left: 150%; }
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.95;
+            font-weight: 600;
+        }
+
+        .contributions {
+            margin-top: 35px;
+        }
+
+        .contributions h3 {
+            margin-bottom: 20px;
+            color: #2d3748;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .contribution-graph {
+            display: grid;
+            grid-template-columns: repeat(53, 1fr);
+            gap: 3px;
+            margin-bottom: 20px;
+            padding: 20px;
+            background: linear-gradient(135deg, #f7fafc, #edf2f7);
+            border-radius: 15px;
+        }
+
+        .contribution-day {
+            width: 12px;
+            height: 12px;
+            border-radius: 3px;
+            background: #e2e8f0;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .contribution-day:hover {
+            transform: scale(1.3);
+            border-radius: 50%;
+        }
+
+        .contribution-day.level-1 { background: linear-gradient(135deg, #c6f6d5, #9ae6b4); }
+        .contribution-day.level-2 { background: linear-gradient(135deg, #9ae6b4, #68d391); }
+        .contribution-day.level-3 { background: linear-gradient(135deg, #68d391, #48bb78); }
+        .contribution-day.level-4 { background: linear-gradient(135deg, #48bb78, #38a169); }
+
+        .contribution-legend {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            color: #4a5568;
+            font-weight: 600;
+        }
+
+        .legend-item {
+            width: 12px;
+            height: 12px;
+            border-radius: 3px;
+        }
+
+        @media (max-width: 1024px) {
+            .calendar-container {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+            
+            .activity-panel {
+                position: static;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .profile-section {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .profile-info h1 {
+                font-size: 2.2rem;
+            }
+            
+            .calendar-header {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .month-nav {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .date-jump {
+                margin-left: 0;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .nav-tabs {
+                flex-wrap: wrap;
+                gap: 5px;
+            }
+            
+            .tab-btn {
+                padding: 12px 20px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="profile-section">
+                <div class="profile-avatar">AK</div>
+                <div class="profile-info">
+                    <h1>AK's Daily Learning Journal</h1>
+                    <p class="subtitle">Tracking Growth, Learning & Life's Beautiful Moments</p>
+                </div>
+            </div>
+            <div class="description">
+                <p><strong>Welcome to my personal growth sanctuary!</strong></p>
+                <br>
+                <p>I maintain a structured weekly tracker to monitor various aspects of my life, including daily activities, fitness, and technical learnings. This tracker helps me stay disciplined and consistent by logging key metrics such as time spent on studies, work, walking time, and other parameters. Additionally, I track my learning progress in AI/ML, networking, and Linux Kernel, ensuring steady improvement in my technical expertise.</p>
+                <br>
+                <p>By regularly reviewing my data, I analyze trends, optimize my routines, and make data-driven decisions to enhance productivity, health, and personal growth. I'm a dedicated individual tracking my personal and professional growth through this comprehensive journal. With a passion for continuous improvement, I document my experiences, learnings, and reflections to build a comprehensive record of my journey.</p>
+                <br>
+                <p>Along with tracking progress, I also capture pictures and videos of time spent with family and friends, preserving valuable memories while maintaining a balanced and fulfilling lifestyle. This journal is more than just data - it's a testament to growth, learning, and the beautiful moments that make life meaningful.</p>
+            </div>
+        </header>
+
+        <div class="nav-tabs">
+            <button class="tab-btn active" onclick="showTab('calendar')">📅 Calendar View</button>
+            <button class="tab-btn" onclick="showTab('stats')">📊 Analytics</button>
+            <button class="tab-btn" onclick="showTab('today')">📝 Today's Progress</button>
+        </div>
+
+        <div id="calendar-tab" class="tab-content active">
+            <div class="calendar-container">
+                <div class="calendar-section">
+                    <div class="calendar-header">
+                        <div class="month-nav">
+                            <button class="nav-btn" onclick="previousMonth()">⟵ Previous</button>
+                            <div class="month-year" id="monthYear"></div>
+                            <button class="nav-btn" onclick="nextMonth()">Next ⟶</button>
+                        </div>
+                        <div class="year-selector">
+                            <label for="yearInput" style="font-size: 1rem; color: #4a5568; font-weight: 600;">Year:</label>
+                            <input type="number" id="yearInput" class="year-input" min="2020" max="2030" onchange="changeYear()">
+                        </div>
+                        <div class="date-jump">
+                            <label for="dateInput" style="font-size: 0.9rem; color: #4a5568; font-weight: 600;">Jump to:</label>
+                            <input type="date" id="dateInput" class="date-input">
+                            <button class="jump-btn" onclick="jumpToDate()">Go</button>
+                        </div>
+                    </div>
+                    <div class="calendar" id="calendar"></div>
+                </div>
+
+                <div class="activity-panel">
+                    <div id="activityContent">
+                        <div class="no-activity">
+                            📅 Select a date to explore your learning adventures and growth milestones
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="stats-tab" class="tab-content">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number" id="totalEntries">0</div>
+                    <div class="stat-label">Total Learning Days</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="currentStreak">0</div>
+                    <div class="stat-label">Current Streak</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="longestStreak">0</div>
+                    <div class="stat-label">Longest Streak</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="thisMonth">0</div>
+                    <div class="stat-label">This Month</div>
+                </div>
+            </div>
+            
+            <div class="contributions">
+                <h3>📈 Learning Journey Visualization (Last 12 Months)</h3>
+                <div class="contribution-graph" id="contributionGraph"></div>
+                <div class="contribution-legend">
+                    <span>Less Active</span>
+                    <div class="legend-item" style="background: #e2e8f0;"></div>
+                    <div class="legend-item level-1"></div>
+                    <div class="legend-item level-2"></div>
+                    <div class="legend-item level-3"></div>
+                    <div class="legend-item level-4"></div>
+                    <span>Very Active</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="today-tab" class="tab-content">
+            <div id="todayContent">
+                <div class="no-activity">📝 No entries logged for today yet. Ready to capture today's learning adventures?</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Enhanced sample data with more realistic content
+        // const sampleData = {
+        //     "entries": [
+        //         {
+        //             "date": "2025-06-20",
+        //             "day": "Friday",
+        //             "learnings": [
+        //                 "Deep dive into Linux Kernel modules and device drivers architecture",
+        //                 "Implemented advanced CSS Grid techniques for responsive web layouts",
+        //                 "Explored JavaScript async/await patterns and error handling best practices",
+        //                 "Studied neural network backpropagation algorithms in detail",
+        //                 "Completed 45-minute morning walk - feeling energized and focused"
+        //             ]
+        //         },
+        //         {
+        //             "date": "2025-06-19",
+        //             "day": "Thursday", 
+        //             "learnings": [
+        //                 "Analyzed TCP/IP stack implementation in Linux networking",
+        //                 "Mastered React useEffect hook with complex dependency arrays",
+        //                 "Practiced advanced SQL joins with multiple table relationships",
+        //                 "Read research paper on transformer architecture improvements",
+        //                 "Family video call - captured beautiful moments with loved ones"
+        //             ]
+        //         },
+        //         {
+        //             "date": "2025-06-18",
+        //             "day": "Wednesday",
+        //             "learnings": [
+        //                 "Implemented Redux Toolkit for efficient state management",
+        //                 "Studied memory management and garbage collection in V8 engine",
+        //                 "Learned about Docker container orchestration with Kubernetes",
+        //                 "Completed 2-hour focused coding session on personal project"
+        //             ]
+        //         },
+
+        //     ]
+        // };
+
+        //let journalData = sampleData;
+        let journalData = null;
+        let currentDate = new Date();
+        let selectedDate = null;
+
+        // Load data (in real implementation, load from JSON file)
+        async function loadData() {
+            try {
+                // Replace this with actual file loading
+                const response = await fetch('journal-data.json');
+                journalData = await response.json();
+                console.log('Data loaded:', journalData);
+                updateCalendar();
+                updateStats();
+                updateToday();
+            } catch (error) {
+                console.error('Error loading data:', error);
+            }
+        }
+
+        function showTab(tabName) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            
+            event.target.classList.add('active');
+            document.getElementById(tabName + '-tab').classList.add('active');
+        }
+
+        function updateCalendar() {
+            const calendar = document.getElementById('calendar');
+            const monthYear = document.getElementById('monthYear');
+            const yearInput = document.getElementById('yearInput');
+            
+            const year = currentDate.getFullYear();
+            const month = currentDate.getMonth();
+            
+            monthYear.textContent = new Date(year, month).toLocaleString('default', { 
+                month: 'long', 
+                year: 'numeric' 
+            });
+
+            yearInput.value = year;
+
+            const firstDay = new Date(year, month, 1);
+            const lastDay = new Date(year, month + 1, 0);
+            const startDate = new Date(firstDay);
+            startDate.setDate(startDate.getDate() - firstDay.getDay());
+
+            calendar.innerHTML = '';
+
+            // Day headers
+            const dayHeaders = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            dayHeaders.forEach(day => {
+                const dayHeader = document.createElement('div');
+                dayHeader.className = 'day-header';
+                dayHeader.textContent = day.substring(0, 3);
+                calendar.appendChild(dayHeader);
+            });
+
+            // Calendar days
+            for (let i = 0; i < 42; i++) {
+                const dayDate = new Date(startDate);
+                dayDate.setDate(startDate.getDate() + i);
+                
+                const dayElement = document.createElement('div');
+                dayElement.className = 'day';
+                dayElement.textContent = dayDate.getDate();
+                
+                if (dayDate.getMonth() !== month) {
+                    dayElement.classList.add('other-month');
+                }
+                
+                const today = new Date();
+                if (dayDate.toDateString() === today.toDateString()) {
+                    dayElement.classList.add('today');
+                }
+                
+                const dateStr = dayDate.toISOString().split('T')[0];
+                const entry = journalData.entries.find(e => e.date === dateStr);
+                
+                if (entry) {
+                    dayElement.classList.add('has-entry');
+                    
+                    // Add entry count indicator
+                    const countElement = document.createElement('div');
+                    countElement.className = 'entry-count';
+                    countElement.textContent = entry.learnings.length;
+                    dayElement.appendChild(countElement);
+                }
+                
+                dayElement.addEventListener('click', () => selectDate(dayDate, entry));
+                calendar.appendChild(dayElement);
+            }
+        }
+
+        function selectDate(date, entry) {
+            // Remove previous selection
+            document.querySelectorAll('.day.selected').forEach(day => 
+                day.classList.remove('selected')
+            );
+            
+            // Add selection to clicked day
+            event.target.classList.add('selected');
+            
+            selectedDate = date;
+            const activityContent = document.getElementById('activityContent');
+            
+            const dateStr = date.toLocaleDateString('en-US', { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            });
+
+            if (entry) {
+                activityContent.innerHTML = `
+                    <div class="activity-header">
+                        <div class="activity-date">${dateStr}</div>
+                        <div class="activity-day">${entry.learnings.length} achievement${entry.learnings.length !== 1 ? 's' : ''}</div>
+                    </div>
+                    <div class="activity-content">
+                        ${entry.learnings.map((learning, index) => 
+                            `<div class="learning-item">${index + 1}. ${learning}</div>`
+                        ).join('')}
+                    </div>
+                `;
+            } else {
+                activityContent.innerHTML = `
+                    <div class="activity-header">
+                        <div class="activity-date">${dateStr}</div>
+                        <div class="activity-day">No entries</div>
+                    </div>
+                    <div class="no-activity">
+                        📝 No learning activities recorded for this date.<br><br>
+                        <strong>Ready to add your daily learnings?</strong><br>
+                        Update your JSON file to track your incredible growth journey!
+                    </div>
+                `;
+            }
+        }
+
+        function previousMonth() {
+            currentDate.setMonth(currentDate.getMonth() - 1);
+            updateCalendar();
+        }
+
+        function nextMonth() {
+            currentDate.setMonth(currentDate.getMonth() + 1);
+            updateCalendar();
+        }
+
+        function changeYear() {
+            const yearInput = document.getElementById('yearInput');
+            const newYear = parseInt(yearInput.value);
+            if (newYear >= 2020 && newYear <= 2030) {
+                currentDate.setFullYear(newYear);
+                updateCalendar();
+            }
+        }
+
+        function jumpToDate() {
+            const dateInput = document.getElementById('dateInput');
+            if (dateInput.value) {
+                const selectedDate = new Date(dateInput.value);
+                currentDate = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), 1);
+                updateCalendar();
+                
+                // Auto-select the specific date
+                setTimeout(() => {
+                    const dateStr = dateInput.value;
+                    const entry = journalData.entries.find(e => e.date === dateStr);
+                    const dayElements = document.querySelectorAll('.day');
+                    
+                    dayElements.forEach(dayEl => {
+                        if (dayEl.textContent == selectedDate.getDate() && !dayEl.classList.contains('other-month')) {
+                            dayEl.click();
+                        }
+                    });
+                }, 100);
+            }
+        }
+
+        function updateStats() {
+            const totalEntries = journalData.entries.length;
+            document.getElementById('totalEntries').textContent = totalEntries;
+
+            // Calculate current streak
+            let currentStreak = 0;
+            const today = new Date();
+            const sortedEntries = journalData.entries
+                .map(e => new Date(e.date))
+                .sort((a, b) => b - a);
+
+            for (let i = 0; i < sortedEntries.length; i++) {
+                const dayDiff = Math.floor((today - sortedEntries[i]) / (1000 * 60 * 60 * 24));
+                if (dayDiff === i) {
+                    currentStreak++;
+                } else {
+                    break;
+                }
+            }
+
+            document.getElementById('currentStreak').textContent = currentStreak;
+
+            // Calculate longest streak
+            let longestStreak = 0;
+            let tempStreak = 1;
+            
+            for (let i = 1; i < sortedEntries.length; i++) {
+                const dayDiff = Math.floor((sortedEntries[i-1] - sortedEntries[i]) / (1000 * 60 * 60 * 24));
+                if (dayDiff === 1) {
+                    tempStreak++;
+                } else {
+                    longestStreak = Math.max(longestStreak, tempStreak);
+                    tempStreak = 1;
+                }
+            }
+            longestStreak = Math.max(longestStreak, tempStreak);
+            
+            document.getElementById('longestStreak').textContent = longestStreak;
+
+            // This month entries
+            const thisMonth = journalData.entries.filter(entry => {
+                const entryDate = new Date(entry.date);
+                return entryDate.getMonth() === today.getMonth() && 
+                       entryDate.getFullYear() === today.getFullYear();
+            }).length;
+            
+            document.getElementById('thisMonth').textContent = thisMonth;
+
+            // Update contribution graph
+            updateContributionGraph();
+        }
+
+        function updateContributionGraph() {
+            const graph = document.getElementById('contributionGraph');
+            graph.innerHTML = '';
+
+            const today = new Date();
+            const startDate = new Date(today);
+            startDate.setDate(startDate.getDate() - 364); // Last 365 days
+
+            for (let i = 0; i < 365; i++) {
+                const currentDay = new Date(startDate);
+                currentDay.setDate(startDate.getDate() + i);
+                
+                const dateStr = currentDay.toISOString().split('T')[0];
+                const entry = journalData.entries.find(e => e.date === dateStr);
+                
+                const dayElement = document.createElement('div');
+                dayElement.className = 'contribution-day';
+                
+                if (entry) {
+                    const level = Math.min(entry.learnings.length, 4);
+                    dayElement.classList.add(`level-${level}`);
+                    dayElement.title = `${dateStr}: ${entry.learnings.length} learnings`;
+                } else {
+                    dayElement.title = `${dateStr}: No entries`;
+                }
+                
+                graph.appendChild(dayElement);
+            }
+        }
+
+        function updateToday() {
+            const today = new Date().toISOString().split('T')[0];
+            const todayEntry = journalData.entries.find(e => e.date === today);
+            const todayContent = document.getElementById('todayContent');
+            
+            if (todayEntry) {
+                todayContent.innerHTML = `
+                    <div class="activity-panel">
+                        <div class="activity-header">
+                            <div class="activity-date">✨ Today's Learning Adventures</div>
+                            <div class="activity-day">${todayEntry.learnings.length} achievement${todayEntry.learnings.length !== 1 ? 's' : ''} unlocked!</div>
+                        </div>
+                        <div class="activity-content">
+                            ${todayEntry.learnings.map((learning, index) => 
+                                `<div class="learning-item">${index + 1}. ${learning}</div>`
+                            ).join('')}
+                        </div>
+                    </div>
+                `;
+            } else {
+                todayContent.innerHTML = `
+                    <div class="no-activity">
+                        🌟 <strong>Ready to make today amazing?</strong><br><br>
+                        No entries logged for today yet. Every day is a new opportunity to learn, grow, and create beautiful memories!<br><br>
+                        <em>Add your learnings to the JSON file to start tracking today's incredible journey!</em>
+                    </div>
+                `;
+            }
+        }
+
+        // Initialize the app
+        document.addEventListener('DOMContentLoaded', function() {
+            loadData();
+            
+            // Set default date input to today
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('dateInput').value = today;
+        });
+    </script>
+</body>
+</html>

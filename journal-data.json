@@ -1,0 +1,36 @@
+{
+  "entries": [
+    {
+      "date": "2025-06-20",
+      "day": "Friday",
+      "learnings": [
+          "Deep dive into Linux Kernel modules and device drivers architecture",
+          "Implemented advanced CSS Grid techniques for responsive web layouts",
+          "Explored JavaScript async/await patterns and error handling best practices",
+          "Studied neural network backpropagation algorithms in detail",
+          "Completed 45-minute morning walk - feeling energized and focused"
+      ]
+    },
+    {
+        "date": "2025-06-19",
+        "day": "Thursday", 
+        "learnings": [
+            "Analyzed TCP/IP stack implementation in Linux networking",
+            "Mastered React useEffect hook with complex dependency arrays",
+            "Practiced advanced SQL joins with multiple table relationships",
+            "Read research paper on transformer architecture improvements",
+            "Family video call - captured beautiful moments with loved ones"
+        ]
+    },
+    {
+        "date": "2025-06-18",
+        "day": "Wednesday",
+        "learnings": [
+            "Implemented Redux Toolkit for efficient state management",
+            "Studied memory management and garbage collection in V8 engine",
+            "Learned about Docker container orchestration with Kubernetes",
+            "Completed 2-hour focused coding session on personal project"
+        ]
+    }
+  ]
+};
