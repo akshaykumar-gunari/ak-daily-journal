@@ -833,20 +833,6 @@
         let currentDate = new Date();
         let selectedDate = null;
 
-        // Load data (in real implementation, load from JSON file)
-        // async function loadData() {
-        //     try {
-        //         // Replace this with actual file loading
-        //         const response = await fetch('journal-data.json');
-        //         journalData = await response.json();
-        //         console.log('Data loaded:', journalData);
-        //         updateCalendar();
-        //         updateStats();
-        //         updateToday();
-        //     } catch (error) {
-        //         console.error('Error loading data:', error);
-        //     }
-        // }
         async function loadData() {
             try {
                 console.log('Attempting to load journal-data.json...');
