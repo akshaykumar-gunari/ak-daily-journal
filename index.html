@@ -839,30 +839,6 @@
         let currentDate = new Date();
         let selectedDate = null;
 
-        // async function loadData() {
-        //     try {
-        //         console.log('Attempting to load journal-data.json...');
-        //         const response = await fetch('journal-data.json');
-        
-        //         if (!response.ok) {
-        //             throw new Error(`HTTP error! status: ${response.status}`);
-        //         }
-        
-        //         const text = await response.text();
-        //         console.log('Raw response:', text.substring(0, 100) + '...');
-        
-        //         journalData = JSON.parse(text);
-        //         console.log('Data loaded:', journalData);
-        //         updateCalendar();
-        //         updateStats();
-        //         updateToday();
-        //     } catch (error) {
-        //         console.error('Error loading data:', error);
-        //         console.error('Error type:', error.name);
-        //         console.error('Error message:', error.message);
-        //     }
-        // }
-
         async function loadData() {
             try {
                 // Add timestamp to bust cache
@@ -1127,20 +1103,55 @@
             }
         }
 
-        function updateToday() {
-            const today = new Date().toISOString().split('T')[0];
-            const todayEntry = journalData.entries.find(e => e.date === today);
-            const todayContent = document.getElementById('todayContent');
+        // function updateToday() {
+        //     const today = new Date().toISOString().split('T')[0];
+        //     const todayEntry = journalData.entries.find(e => e.date === today);
+        //     const todayContent = document.getElementById('todayContent');
             
+        //     if (todayEntry) {
+        //         todayContent.innerHTML = `
+        //             <div class="activity-panel">
+        //                 <div class="activity-header">
+        //                     <div class="activity-date">✨ Today's Learning Adventures</div>
+        //                     <div class="activity-day">${todayEntry.learnings.length} achievement${todayEntry.learnings.length !== 1 ? 's' : ''} unlocked!</div>
+        //                 </div>
+        //                 <div class="activity-content">
+        //                     ${todayEntry.learnings.map((learning, index) => 
+        //                         `<div class="learning-item">${index + 1}. ${learning}</div>`
+        //                     ).join('')}
+        //                 </div>
+        //             </div>
+        //         `;
+        //     } else {
+        //         todayContent.innerHTML = `
+        //             <div class="no-activity">
+        //                 🌟 <strong>Ready to make today amazing?</strong><br><br>
+        //                 No entries logged for today yet. Every day is a new opportunity to learn, grow, and create beautiful memories!<br><br>
+        //                 <em>Add your learnings to the JSON file to start tracking today's incredible journey!</em>
+        //             </div>
+        //         `;
+        //     }
+        // }
+
+        function updateToday() {
+            // Create today's date in local timezone format
+            const today = new Date();
+            const todayStr = today.getFullYear() + '-' + 
+                    String(today.getMonth() + 1).padStart(2, '0') + '-' + 
+                    String(today.getDate()).padStart(2, '0');
+    
+            const todayEntry = journalData.entries.find(e => e.date === todayStr);
+            const todayContent = document.getElementById('todayContent');
+    
             if (todayEntry) {
                 todayContent.innerHTML = `
                     <div class="activity-panel">
                         <div class="activity-header">
                             <div class="activity-date">✨ Today's Learning Adventures</div>
-                            <div class="activity-day">${todayEntry.learnings.length} achievement${todayEntry.learnings.length !== 1 ? 's' : ''} unlocked!</div>
-                        </div>
-                        <div class="activity-content">
-                            ${todayEntry.learnings.map((learning, index) => 
+                        <div class="activity-day">${todayEntry.learnings.length} achievement${todayEntry.learnings.length !== 1 ? 's' : ''} unlocked!</div>
+                    </div>
+                    <div class="activity-content">
+                                ${todayEntry.learnings.map((learning, index) => 
                                 `<div class="learning-item">${index + 1}. ${learning}</div>`
                             ).join('')}
                         </div>
