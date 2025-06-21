@@ -795,46 +795,6 @@
     </div>
 
     <script>
-        // Enhanced sample data with more realistic content
-        // const sampleData = {
-        //     "entries": [
-        //         {
-        //             "date": "2025-06-20",
-        //             "day": "Friday",
-        //             "learnings": [
-        //                 "Deep dive into Linux Kernel modules and device drivers architecture",
-        //                 "Implemented advanced CSS Grid techniques for responsive web layouts",
-        //                 "Explored JavaScript async/await patterns and error handling best practices",
-        //                 "Studied neural network backpropagation algorithms in detail",
-        //                 "Completed 45-minute morning walk - feeling energized and focused"
-        //             ]
-        //         },
-        //         {
-        //             "date": "2025-06-19",
-        //             "day": "Thursday", 
-        //             "learnings": [
-        //                 "Analyzed TCP/IP stack implementation in Linux networking",
-        //                 "Mastered React useEffect hook with complex dependency arrays",
-        //                 "Practiced advanced SQL joins with multiple table relationships",
-        //                 "Read research paper on transformer architecture improvements",
-        //                 "Family video call - captured beautiful moments with loved ones"
-        //             ]
-        //         },
-        //         {
-        //             "date": "2025-06-18",
-        //             "day": "Wednesday",
-        //             "learnings": [
-        //                 "Implemented Redux Toolkit for efficient state management",
-        //                 "Studied memory management and garbage collection in V8 engine",
-        //                 "Learned about Docker container orchestration with Kubernetes",
-        //                 "Completed 2-hour focused coding session on personal project"
-        //             ]
-        //         },
-
-        //     ]
-        // };
-
-        //let journalData = sampleData;
         let journalData = null;
         let currentDate = new Date();
         let selectedDate = null;
@@ -934,6 +894,51 @@
             }
         }
 
+        // function selectDate(date, entry) {
+        //     document.querySelectorAll('.day.selected').forEach(day => 
+        //         day.classList.remove('selected')
+        //     );
+            
+        //     // Add selection to clicked day
+        //     event.target.classList.add('selected');
+            
+        //     selectedDate = date;
+        //     const activityContent = document.getElementById('activityContent');
+            
+        //     const dateStr = date.toLocaleDateString('en-US', { 
+        //         weekday: 'long', 
+        //         year: 'numeric', 
+        //         month: 'long', 
+        //         day: 'numeric' 
+        //     });
+
+        //     if (entry) {
+        //         activityContent.innerHTML = `
+        //             <div class="activity-header">
+        //                 <div class="activity-date">${dateStr}</div>
+        //                 <div class="activity-day">${entry.learnings.length} achievement${entry.learnings.length !== 1 ? 's' : ''}</div>
+        //             </div>
+        //             <div class="activity-content">
+        //                 ${entry.learnings.map((learning, index) => 
+        //                     `<div class="learning-item">${index + 1}. ${learning}</div>`
+        //                 ).join('')}
+        //             </div>
+        //         `;
+        //     } else {
+        //         activityContent.innerHTML = `
+        //             <div class="activity-header">
+        //                 <div class="activity-date">${dateStr}</div>
+        //                 <div class="activity-day">No entries</div>
+        //             </div>
+        //             <div class="no-activity">
+        //                 📝 No learning activities recorded for this date.<br><br>
+        //                 <strong>Ready to add your daily learnings?</strong><br>
+        //                 Update your JSON file to track your incredible growth journey!
+        //             </div>
+        //         `;
+        //     }
+        // }
+
         function selectDate(date, entry) {
             // Remove previous selection
             document.querySelectorAll('.day.selected').forEach(day => 
@@ -952,7 +957,7 @@
                 month: 'long', 
                 day: 'numeric' 
             });
-
+        
             if (entry) {
                 activityContent.innerHTML = `
                     <div class="activity-header">
@@ -979,6 +984,7 @@
                 `;
             }
         }
+
 
         function previousMonth() {
             currentDate.setMonth(currentDate.getMonth() - 1);
@@ -1132,41 +1138,6 @@
         //         `;
         //     }
         // }
-
-        function updateToday() {
-            // Create today's date in local timezone format
-            const today = new Date();
-            const todayStr = today.getFullYear() + '-' + 
-                    String(today.getMonth() + 1).padStart(2, '0') + '-' + 
-                    String(today.getDate()).padStart(2, '0');
-    
-            const todayEntry = journalData.entries.find(e => e.date === todayStr);
-            const todayContent = document.getElementById('todayContent');
-    
-            if (todayEntry) {
-                todayContent.innerHTML = `
-                    <div class="activity-panel">
-                        <div class="activity-header">
-                            <div class="activity-date">✨ Today's Learning Adventures</div>
-                        <div class="activity-day">${todayEntry.learnings.length} achievement${todayEntry.learnings.length !== 1 ? 's' : ''} unlocked!</div>
-                    </div>
-                    <div class="activity-content">
-                                ${todayEntry.learnings.map((learning, index) => 
-                                `<div class="learning-item">${index + 1}. ${learning}</div>`
-                            ).join('')}
-                        </div>
-                    </div>
-                `;
-            } else {
-                todayContent.innerHTML = `
-                    <div class="no-activity">
-                        🌟 <strong>Ready to make today amazing?</strong><br><br>
-                        No entries logged for today yet. Every day is a new opportunity to learn, grow, and create beautiful memories!<br><br>
-                        <em>Add your learnings to the JSON file to start tracking today's incredible journey!</em>
-                    </div>
-                `;
-            }
-        }
 
         // Initialize the app
         document.addEventListener('DOMContentLoaded', function() {
