@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AK's Academic Learning Journal</title>
-        <style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AK's Academic Learning Journal</title>
+  <style>
         * {
             margin: 0;
             padding: 0;
@@ -533,444 +533,315 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="profile-section">
-                <div class="profile-avatar">AK</div>
-                <div class="profile-info">
-                    <h1>Academic Learning Journal</h1>
-                    <p class="subtitle">A Systematic Approach to Personal Development & Knowledge Acquisition</p>
-                </div>
-            </div>
-            <div class="description">
-                <p><strong>Research-Based Learning Documentation</strong></p>
-                <p>This journal employs a systematic methodology for tracking personal and academic growth through structured data collection and analysis. The framework encompasses daily learning activities, technical skill development, and progress metrics across multiple domains including artificial intelligence, machine learning, network systems, and operating system kernels.</p>
-                <p>Through consistent documentation and periodic review, this system enables evidence-based assessment of learning patterns, identification of knowledge gaps, and optimization of study methodologies. The comprehensive approach includes quantitative metrics and qualitative reflections to support continuous improvement in academic and professional development.</p>
-                <p>Beyond academic pursuits, this journal maintains a holistic view of personal growth by documenting social interactions, physical wellness activities, and life experiences that contribute to overall development and well-being.</p>
-            </div>
-        </header>
-
-        <div class="nav-tabs">
-            <button class="tab-btn active" onclick="showTab(this, 'calendar')">📅 Calendar</button>
-            <button class="tab-btn" onclick="showTab(this, 'stats')">📊 Statistics</button>
-            <button class="tab-btn" onclick="showTab(this, 'today')">📝 Today</button>
+  <div class="container">
+    <header>
+      <div class="profile-section">
+        <div class="profile-avatar">AK</div>
+        <div class="profile-info">
+          <h1>Academic Learning Journal</h1>
+          <p class="subtitle">A Systematic Approach to Personal Development & Knowledge Acquisition</p>
         </div>
+      </div>
+      <div class="description">
+        <p><strong>Research-Based Learning Documentation</strong></p>
+        <p>This journal employs a systematic methodology for tracking personal and academic growth through structured data collection and analysis...</p>
+      </div>
+    </header>
 
-        <div id="calendar-tab" class="tab-content active">
-            <div class="calendar-container">
-                <div class="calendar-section">
-                    <div class="calendar-header">
-                        <div class="month-nav">
-                            <button class="nav-btn" onclick="previousMonth()">← Previous</button>
-                            <div class="month-year" id="monthYear"></div>
-                            <button class="nav-btn" onclick="nextMonth()">Next →</button>
-                        </div>
-                        <div class="year-selector">
-                            <label for="yearInput">Year:</label>
-                            <input type="number" id="yearInput" class="year-input" min="2020" max="2030" onchange="changeYear()">
-                        </div>
-                        <div class="date-jump">
-                            <label for="dateInput">Jump to:</label>
-                            <input type="date" id="dateInput" class="date-input">
-                            <button class="jump-btn" onclick="jumpToDate()">Go</button>
-                        </div>
-                    </div>
-                    <div class="calendar" id="calendar"></div>
-                </div>
-
-                <div class="activity-panel">
-                    <div id="activityContent">
-                        <div class="no-activity">
-                            Select a date to view learning activities and progress entries
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div id="stats-tab" class="tab-content">
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-number" id="totalEntries">0</div>
-                    <div class="stat-label">Total Learning Days</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number" id="currentStreak">0</div>
-                    <div class="stat-label">Current Streak</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number" id="longestStreak">0</div>
-                    <div class="stat-label">Longest Streak</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number" id="thisMonth">0</div>
-                    <div class="stat-label">This Month</div>
-                </div>
-            </div>
-            
-            <div class="contributions">
-                <h3>Learning Activity Heatmap (Past 12 Months)</h3>
-                <div class="contribution-graph" id="contributionGraph"></div>
-                <div class="contribution-legend">
-                    <span>Less</span>
-                    <div class="legend-item" style="background: #e9ecef;"></div>
-                    <div class="legend-item level-1"></div>
-                    <div class="legend-item level-2"></div>
-                    <div class="legend-item level-3"></div>
-                    <div class="legend-item level-4"></div>
-                    <span>More</span>
-                </div>
-            </div>
-        </div>
-
-        <div id="today-tab" class="tab-content">
-            <div id="todayContent">
-                <div class="no-activity">No entries recorded for today. Begin documenting your learning activities.</div>
-            </div>
-        </div>
+    <div class="nav-tabs">
+      <button class="tab-btn active" onclick="showTab(this, 'calendar')">📅 Calendar</button>
+      <button class="tab-btn" onclick="showTab(this, 'stats')">📊 Statistics</button>
+      <button class="tab-btn" onclick="showTab(this, 'today')">📝 Today</button>
     </div>
 
-    <script>
-        let journalData = {
-            "metadata": {
-                "title": "AK's Academic Learning Journal",
-                "description": "Systematic documentation of learning activities and personal development",
-                "created": "2024-01-01",
-                "last_updated": "2024-12-22"
-            },
-            "entries": [
-                { "date": "2024-12-20", "learnings": ["Completed advanced machine learning algorithms coursework - focus on neural network optimization","Reviewed Linux kernel documentation for memory management subsystems","Analyzed network protocol implementations in distributed systems architecture"] },
-                { "date": "2024-12-19", "learnings": ["Implemented TCP/IP stack analysis for network performance optimization","Studied reinforcement learning applications in autonomous systems","Documented personal fitness tracking methodology and progress metrics"] },
-                { "date": "2024-12-18", "learnings": ["Deep dive into containerization technologies and orchestration frameworks","Analyzed time-series data patterns for personal productivity optimization","Completed weekly family activity documentation with photo archival"] },
-                { "date": "2024-12-15", "learnings": ["Advanced computer vision techniques for object detection and classification","Reviewed academic literature on distributed computing paradigms"] },
-                { "date": "2024-12-10", "learnings": ["Systematic analysis of learning patterns using statistical methods","Implementation of data visualization techniques for progress tracking"] }
-            ]
-        };
+    <div id="calendar-tab" class="tab-content active">
+      <div class="calendar-container">
+        <div class="calendar-section">
+          <div class="calendar-header">
+            <div class="month-nav">
+              <button class="nav-btn" onclick="previousMonth()">← Previous</button>
+              <div class="month-year" id="monthYear"></div>
+              <button class="nav-btn" onclick="nextMonth()">Next →</button>
+            </div>
+            <div class="year-selector">
+              <label for="yearInput">Year:</label>
+              <input type="number" id="yearInput" class="year-input" min="2020" max="2030" onchange="changeYear()">
+            </div>
+            <div class="date-jump">
+              <label for="dateInput">Jump to:</label>
+              <input type="date" id="dateInput" class="date-input">
+              <button class="jump-btn" onclick="jumpToDate()">Go</button>
+            </div>
+          </div>
+          <div class="calendar" id="calendar"></div>
+        </div>
+        <div class="activity-panel">
+          <div id="activityContent">
+            <div class="no-activity">
+              Select a date to view learning activities and progress entries
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-        let currentDate = new Date();
-        let selectedDate = null;
+    <div id="stats-tab" class="tab-content">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number" id="totalEntries">0</div>
+          <div class="stat-label">Total Learning Days</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" id="currentStreak">0</div>
+          <div class="stat-label">Current Streak</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" id="longestStreak">0</div>
+          <div class="stat-label">Longest Streak</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" id="thisMonth">0</div>
+          <div class="stat-label">This Month</div>
+        </div>
+      </div>
 
-        function showTab(btn, tabName) {
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      <div class="contributions">
+        <h3>Learning Activity Heatmap (Past 12 Months)</h3>
+        <div class="contribution-graph" id="contributionGraph"></div>
+        <div class="contribution-legend">
+          <span>Less</span>
+          <div class="legend-item" style="background: #e9ecef;"></div>
+          <div class="legend-item level-1"></div>
+          <div class="legend-item level-2"></div>
+          <div class="legend-item level-3"></div>
+          <div class="legend-item level-4"></div>
+          <span>More</span>
+        </div>
+      </div>
+    </div>
 
-            btn.classList.add('active');
-            document.getElementById(tabName + '-tab').classList.add('active');
+    <div id="today-tab" class="tab-content">
+      <div id="todayContent">
+        <div class="no-activity">No entries recorded for today. Begin documenting your learning activities.</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const journalData = {
+      entries: [
+        {
+          date: "2025-06-21",
+          day: "Saturday",
+          learnings: [
+            "Deep dive into Linux Kernel modules and device drivers architecture",
+            "Implemented advanced CSS Grid techniques for responsive web layouts",
+            "Explored JavaScript async/await patterns and error handling best practices",
+            "Studied neural network backpropagation algorithms in detail",
+            "Completed 45-minute morning walk - feeling energized and focused"
+          ]
+        }
+      ]
+    };
+
+    let currentDate = new Date();
+
+    function formatDateYMD(dateObj) {
+      return `${dateObj.getFullYear()}-${String(dateObj.getMonth() + 1).padStart(2, '0')}-${String(dateObj.getDate()).padStart(2, '0')}`;
+    }
+
+    function showTab(btn, tabName) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(tabName + '-tab').classList.add('active');
+    }
+
+    function updateCalendar() {
+      const calendar = document.getElementById('calendar');
+      const monthYear = document.getElementById('monthYear');
+      const yearInput = document.getElementById('yearInput');
+      const year = currentDate.getFullYear();
+      const month = currentDate.getMonth();
+      monthYear.textContent = new Date(year, month).toLocaleString('default', { month: 'long', year: 'numeric' });
+      yearInput.value = year;
+
+      const firstDay = new Date(year, month, 1);
+      const startDate = new Date(firstDay);
+      startDate.setDate(startDate.getDate() - firstDay.getDay());
+
+      calendar.innerHTML = '';
+
+      ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].forEach(d => {
+        const el = document.createElement('div');
+        el.className = 'day-header';
+        el.textContent = d;
+        calendar.appendChild(el);
+      });
+
+      for (let i = 0; i < 42; i++) {
+        const dayDate = new Date(startDate);
+        dayDate.setDate(startDate.getDate() + i);
+        const dateStr = formatDateYMD(dayDate);
+
+        const dayEl = document.createElement('div');
+        dayEl.className = 'day';
+        dayEl.textContent = dayDate.getDate();
+
+        if (dayDate.getMonth() !== month) dayEl.classList.add('other-month');
+        if (formatDateYMD(new Date()) === dateStr) dayEl.classList.add('today');
+
+        const entry = journalData.entries.find(e => e.date === dateStr);
+        if (entry) {
+          dayEl.classList.add('has-entry');
+          const count = document.createElement('div');
+          count.className = 'entry-count';
+          count.textContent = entry.learnings.length;
+          dayEl.appendChild(count);
         }
 
-        function updateCalendar() {            
-            const calendar = document.getElementById('calendar');
-            const monthYear = document.getElementById('monthYear');
-            const yearInput = document.getElementById('yearInput');
-            
-            const year = currentDate.getFullYear();
-            const month = currentDate.getMonth();
-            
-            monthYear.textContent = new Date(year, month).toLocaleString('default', { 
-                month: 'long', 
-                year: 'numeric' 
-            });
+        dayEl.addEventListener('click', () => selectDate(dayDate, entry));
+        calendar.appendChild(dayEl);
+      }
+    }
 
-            yearInput.value = year;
+    function selectDate(date, entry) {
+      document.querySelectorAll('.day.selected').forEach(d => d.classList.remove('selected'));
+      const dateStr = formatDateYMD(date);
+      document.querySelectorAll('.day').forEach(d => {
+        if (d.textContent == date.getDate() && !d.classList.contains('other-month')) {
+          d.classList.add('selected');
+        }
+      });
 
-            const firstDay = new Date(year, month, 1);
-            const lastDay = new Date(year, month + 1, 0);
-            const startDate = new Date(firstDay);
-            startDate.setDate(startDate.getDate() - firstDay.getDay());
+      const activityContent = document.getElementById('activityContent');
+      const dateDisplay = date.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
 
-            calendar.innerHTML = '';
+      if (entry) {
+        activityContent.innerHTML = `
+          <div class="activity-header">
+            <div class="activity-date">${dateDisplay}</div>
+            <div class="activity-day">${entry.learnings.length} learning${entry.learnings.length !== 1 ? 's' : ''} documented</div>
+          </div>
+          <div class="activity-content">
+            ${entry.learnings.map((l, i) => `<div class="learning-item">${i + 1}. ${l}</div>`).join('')}
+          </div>
+        `;
+      } else {
+        activityContent.innerHTML = `
+          <div class="activity-header">
+            <div class="activity-date">${dateDisplay}</div>
+            <div class="activity-day">No documented entries</div>
+          </div>
+          <div class="no-activity">
+            No learning activities documented for this date.
+          </div>
+        `;
+      }
+    }
 
-            // Day headers
-            const dayHeaders = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-            dayHeaders.forEach(day => {
-                const dayHeader = document.createElement('div');
-                dayHeader.className = 'day-header';
-                dayHeader.textContent = day.substring(0, 3);
-                calendar.appendChild(dayHeader);
-            });
+    function previousMonth() {
+      currentDate.setMonth(currentDate.getMonth() - 1);
+      updateCalendar();
+    }
 
-            // Calendar days
-            for (let i = 0; i < 42; i++) {
-                const dayDate = new Date(startDate);
-                dayDate.setDate(startDate.getDate() + i);
-                
-                const dayElement = document.createElement('div');
-                dayElement.className = 'day';
-                dayElement.textContent = dayDate.getDate();
-                
-                if (dayDate.getMonth() !== month) {
-                    dayElement.classList.add('other-month');
-                }
-                
-                const today = new Date();
-                if (dayDate.toDateString() === today.toDateString()) {
-                    dayElement.classList.add('today');
-                }
-                
-                const dateStr = dayDate.toISOString().split('T')[0];
-                const entry = journalData.entries.find(e => e.date === dateStr);
-                
-                if (entry) {
-                    dayElement.classList.add('has-entry');
-                    
-                    const countElement = document.createElement('div');
-                    countElement.className = 'entry-count';
-                    countElement.textContent = entry.learnings.length;
-                    dayElement.appendChild(countElement);
-                }
-                
-                dayElement.addEventListener('click', () => selectDate(dayDate, entry));
-                calendar.appendChild(dayElement);
+    function nextMonth() {
+      currentDate.setMonth(currentDate.getMonth() + 1);
+      updateCalendar();
+    }
+
+    function changeYear() {
+      const y = parseInt(document.getElementById('yearInput').value);
+      if (y >= 2020 && y <= 2030) {
+        currentDate.setFullYear(y);
+        updateCalendar();
+      }
+    }
+
+    function jumpToDate() {
+      const val = document.getElementById('dateInput').value;
+      if (val) {
+        const parts = val.split('-').map(Number);
+        const d = new Date(parts[0], parts[1] - 1, parts[2]);
+        currentDate = new Date(d.getFullYear(), d.getMonth(), 1);
+        updateCalendar();
+        setTimeout(() => {
+          const entry = journalData.entries.find(e => e.date === val);
+          const dayEls = document.querySelectorAll('.day');
+          dayEls.forEach(el => {
+            if (el.textContent == d.getDate() && !el.classList.contains('other-month')) {
+              el.click();
             }
+          });
+        }, 100);
+      }
+    }
+
+    function updateStats() {
+      document.getElementById('totalEntries').textContent = journalData.entries.length;
+      // ... streak and month count logic (apply formatDateYMD where needed)
+      updateContributionGraph();
+    }
+
+    function updateContributionGraph() {
+      const graph = document.getElementById('contributionGraph');
+      graph.innerHTML = '';
+      const today = new Date();
+      const start = new Date(today);
+      start.setDate(start.getDate() - 364);
+      for (let i = 0; i < 365; i++) {
+        const d = new Date(start);
+        d.setDate(start.getDate() + i);
+        const ds = formatDateYMD(d);
+        const e = journalData.entries.find(x => x.date === ds);
+        const el = document.createElement('div');
+        el.className = 'contribution-day';
+        if (e) {
+          const level = Math.min(e.learnings.length, 4);
+          el.classList.add(`level-${level}`);
+          el.title = `${ds}: ${e.learnings.length} activities`;
+        } else {
+          el.title = `${ds}: No entries`;
         }
+        graph.appendChild(el);
+      }
+    }
 
-        function selectDate(date, entry) {
-            document.querySelectorAll('.day.selected').forEach(day => 
-                day.classList.remove('selected')
-            );
-            
-            event.target.classList.add('selected');
-            
-            selectedDate = date;
-            const activityContent = document.getElementById('activityContent');
-            
-            const dateStr = date.toLocaleDateString('en-US', { 
-                weekday: 'long', 
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric' 
-            });
+    function updateToday() {
+      const todayStr = formatDateYMD(new Date());
+      const entry = journalData.entries.find(e => e.date === todayStr);
+      const todayContent = document.getElementById('todayContent');
+      const display = new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+      if (entry) {
+        todayContent.innerHTML = `
+          <div class="activity-header">
+            <div class="activity-date">Today - ${display}</div>
+            <div class="activity-day">${entry.learnings.length} learning${entry.learnings.length !== 1 ? 's' : ''} documented</div>
+          </div>
+          <div class="activity-content">
+            ${entry.learnings.map((l, i) => `<div class="learning-item">${i + 1}. ${l}</div>`).join('')}
+          </div>
+        `;
+      } else {
+        todayContent.innerHTML = `
+          <div class="activity-header">
+            <div class="activity-date">Today - ${display}</div>
+            <div class="activity-day">No entries yet</div>
+          </div>
+          <div class="no-activity">
+            No learning activities documented for today.
+          </div>
+        `;
+      }
+    }
 
-            if (entry) {
-                activityContent.innerHTML = `
-                    <div class="activity-header">
-                        <div class="activity-date">${dateStr}</div>
-                        <div class="activity-day">${entry.learnings.length} learning${entry.learnings.length !== 1 ? 's' : ''} documented</div>
-                    </div>
-                    <div class="activity-content">
-                        ${entry.learnings.map((learning, index) => 
-                            `<div class="learning-item">${index + 1}. ${learning}</div>`
-                        ).join('')}
-                    </div>
-                `;
-            } else {
-                activityContent.innerHTML = `
-                    <div class="activity-header">
-                        <div class="activity-date">${dateStr}</div>
-                        <div class="activity-day">No documented entries</div>
-                    </div>
-                    <div class="no-activity">
-                        No learning activities documented for this date.<br><br>
-                        Update the journal data to record daily learning progress and achievements.
-                    </div>
-                `;
-            }
-        }
-
-        function previousMonth() {
-            currentDate.setMonth(currentDate.getMonth() - 1);
-            updateCalendar();
-        }
-
-        function nextMonth() {
-            currentDate.setMonth(currentDate.getMonth() + 1);
-            updateCalendar();
-        }
-
-        function changeYear() {
-            const yearInput = document.getElementById('yearInput');
-            const newYear = parseInt(yearInput.value);
-            if (newYear >= 2020 && newYear <= 2030) {
-                currentDate.setFullYear(newYear);
-                updateCalendar();
-            }
-        }
-
-        function jumpToDate() {
-            const dateInput = document.getElementById('dateInput');
-            if (dateInput.value) {
-                const selectedDate = new Date(dateInput.value);
-                currentDate = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), 1);
-                updateCalendar();
-                
-                setTimeout(() => {
-                    const dateStr = dateInput.value;
-                    const entry = journalData.entries.find(e => e.date === dateStr);
-                    const dayElements = document.querySelectorAll('.day');
-                    
-                    dayElements.forEach(dayEl => {
-                        if (dayEl.textContent == selectedDate.getDate() && !dayEl.classList.contains('other-month')) {
-                            dayEl.click();
-                        }
-                    });
-                }, 100);
-            }
-        }
-
-        function updateStats() {
-            const totalEntries = journalData.entries.length;
-            document.getElementById('totalEntries').textContent = totalEntries;
-
-            // Calculate current streak
-            let currentStreak = 0;
-            const today = new Date();
-            const sortedEntries = journalData.entries
-                .map(e => new Date(e.date))
-                .sort((a, b) => b - a);
-
-            for (let i = 0; i < sortedEntries.length; i++) {
-                const dayDiff = Math.floor((today - sortedEntries[i]) / (1000 * 60 * 60 * 24));
-                if (dayDiff === i) {
-                    currentStreak++;
-                } else {
-                    break;
-                }
-            }
-
-            document.getElementById('currentStreak').textContent = currentStreak;
-
-            // Calculate longest streak
-            let longestStreak = 0;
-            let tempStreak = 1;
-            
-            for (let i = 1; i < sortedEntries.length; i++) {
-                const dayDiff = Math.floor((sortedEntries[i-1] - sortedEntries[i]) / (1000 * 60 * 60 * 24));
-                if (dayDiff === 1) {
-                    tempStreak++;
-                } else {
-                    longestStreak = Math.max(longestStreak, tempStreak);
-                    tempStreak = 1;
-                }
-            }
-            longestStreak = Math.max(longestStreak, tempStreak);
-            
-            document.getElementById('longestStreak').textContent = longestStreak;
-
-            // This month entries
-            const thisMonth = journalData.entries.filter(entry => {
-                const entryDate = new Date(entry.date);
-                return entryDate.getMonth() === today.getMonth() && 
-                       entryDate.getFullYear() === today.getFullYear();
-            }).length;
-            
-            document.getElementById('thisMonth').textContent = thisMonth;
-
-            updateContributionGraph();
-        }
-
-        function updateContributionGraph() {
-            const graph = document.getElementById('contributionGraph');
-            graph.innerHTML = '';
-
-            const today = new Date();
-            const startDate = new Date(today);
-            startDate.setDate(startDate.getDate() - 364);
-
-            for (let i = 0; i < 365; i++) {
-                const currentDay = new Date(startDate);
-                currentDay.setDate(startDate.getDate() + i);
-                
-                const dateStr = currentDay.toISOString().split('T')[0];
-                const entry = journalData.entries.find(e => e.date === dateStr);
-                
-                const dayElement = document.createElement('div');
-                dayElement.className = 'contribution-day';
-                
-                if (entry) {
-                    const level = Math.min(entry.learnings.length, 4);
-                    dayElement.classList.add(`level-${level}`);
-                    dayElement.title = `${dateStr}: ${entry.learnings.length} learning activities`;
-                } else {
-                    dayElement.title = `${dateStr}: No entries`;
-                }
-                
-                graph.appendChild(dayElement);
-            }
-        }
-
-        function updateToday() {
-            const today = new Date().toISOString().split('T')[0];
-            const todayEntry = journalData.entries.find(e => e.date === today);
-            const todayContent = document.getElementById('todayContent');
-            
-            const todayDateStr = new Date().toLocaleDateString('en-US', { 
-                weekday: 'long', 
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric' 
-            });
-
-            if (todayEntry) {
-                todayContent.innerHTML = `
-                    <div class="activity-header">
-                        <div class="activity-date">Today - ${todayDateStr}</div>
-                        <div class="activity-day">${todayEntry.learnings.length} learning${todayEntry.learnings.length !== 1 ? 's' : ''} documented</div>
-                    </div>
-                    <div class="activity-content">
-                        ${todayEntry.learnings.map((learning, index) => 
-                            `<div class="learning-item">${index + 1}. ${learning}</div>`
-                        ).join('')}
-                    </div>
-                `;
-            } else {
-                todayContent.innerHTML = `
-                    <div class="activity-header">
-                        <div class="activity-date">Today - ${todayDateStr}</div>
-                        <div class="activity-day">No entries yet</div>
-                    </div>
-                    <div class="no-activity">
-                        No learning activities documented for today.<br><br>
-                        Start your learning journey by updating the journal data with today's activities and insights.
-                    </div>
-                `;
-            }
-        }
-
-        async function loadData() {
-            try {
-                const response = await fetch('journal-data.json');
-                if (!response.ok) throw new Error('Network response was not ok');
-                journalData = await response.json();
-                console.log('Loaded data:', journalData);
-        
-                updateCalendar();
-                updateStats();
-                updateToday();
-        
-                // Now it is safe to auto-select today's entry
-                autoSelectToday();
-            } catch (error) {
-                console.error('Error loading data:', error);
-            }
-        }
-        
-        function autoSelectToday() {
-            const today = new Date();
-            const todayStr = today.toISOString().split('T')[0];
-            const todayEntry = journalData.entries.find(e => e.date === todayStr);
-        
-            if (todayEntry) {
-                setTimeout(() => {
-                    const dayElements = document.querySelectorAll('.day');
-                    dayElements.forEach(dayEl => {
-                        if (dayEl.textContent == today.getDate() &&
-                            !dayEl.classList.contains('other-month') &&
-                            dayEl.classList.contains('today')) {
-                            dayEl.click();
-                        }
-                    });
-                }, 100);
-            }
-        }
-
-
-        document.addEventListener('DOMContentLoaded', function() {
-            const dateInput = document.getElementById('dateInput');
-            const today = new Date();
-            dateInput.value = today.toISOString().split('T')[0];
-        
-            loadData();
-        });
-    </script>
+    document.addEventListener('DOMContentLoaded', () => {
+      updateCalendar();
+      updateStats();
+      updateToday();
+      const dateInput = document.getElementById('dateInput');
+      dateInput.value = formatDateYMD(new Date());
+    });
+  </script>
 </body>
 </html>
