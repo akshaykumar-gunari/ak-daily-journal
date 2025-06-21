@@ -628,21 +628,21 @@
   </div>
 
   <script>
-    const journalData = {
-      entries: [
-        {
-          date: "2025-06-21",
-          day: "Saturday",
-          learnings: [
-            "Deep dive into Linux Kernel modules and device drivers architecture",
-            "Implemented advanced CSS Grid techniques for responsive web layouts",
-            "Explored JavaScript async/await patterns and error handling best practices",
-            "Studied neural network backpropagation algorithms in detail",
-            "Completed 45-minute morning walk - feeling energized and focused"
-          ]
-        }
-      ]
-    };
+    // const journalData = {
+    //   entries: [
+    //     {
+    //       date: "2025-06-21",
+    //       day: "Saturday",
+    //       learnings: [
+    //         "Deep dive into Linux Kernel modules and device drivers architecture",
+    //         "Implemented advanced CSS Grid techniques for responsive web layouts",
+    //         "Explored JavaScript async/await patterns and error handling best practices",
+    //         "Studied neural network backpropagation algorithms in detail",
+    //         "Completed 45-minute morning walk - feeling energized and focused"
+    //       ]
+    //     }
+    //   ]
+    // };
 
     let currentDate = new Date();
 
@@ -835,12 +835,28 @@
       }
     }
 
+    let journalData = {};
+
+    async function loadData() {
+      try {
+        const response = await fetch('journal-data.json');
+        if (!response.ok) throw new Error('Failed to load JSON');
+        journalData = await response.json();
+        console.log('Loaded journal data:', journalData);
+    
+        updateCalendar();
+        updateStats();
+        updateToday();
+      } catch (e) {
+        console.error('Error loading journal data:', e);
+      }
+    }
+
+
     document.addEventListener('DOMContentLoaded', () => {
-      updateCalendar();
-      updateStats();
-      updateToday();
-      const dateInput = document.getElementById('dateInput');
-      dateInput.value = formatDateYMD(new Date());
+        loadData()
+        const dateInput = document.getElementById('dateInput');
+        dateInput.value = formatDateYMD(new Date());
     });
   </script>
 </body>
