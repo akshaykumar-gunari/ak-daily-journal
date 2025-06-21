@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AK's Daily Learning Journal</title>
-    <style>
+    <title>AK's Academic Learning Journal</title>
+        <style>
         * {
             margin: 0;
             padding: 0;
@@ -12,28 +12,15 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: #f8f9fa;
+            color: #2c3e50;
+            line-height: 1.6;
             min-height: 100vh;
-            color: #333;
-            position: relative;
-            overflow-x: hidden;
-        }
-
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.05)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.03)"/><circle cx="50" cy="10" r="0.5" fill="rgba(255,255,255,0.04)"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grain)"/></svg>');
-            pointer-events: none;
-            z-index: -1;
         }
 
         .container {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
         }
@@ -41,164 +28,118 @@
         header {
             text-align: center;
             margin-bottom: 40px;
-            color: white;
-            position: relative;
+            padding: 30px 0;
+            border-bottom: 2px solid #e9ecef;
         }
 
         .profile-section {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
+            margin-bottom: 25px;
         }
 
         .profile-avatar {
-            width: 80px;
-            height: 80px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3);
+            background: #34495e;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2rem;
+            font-size: 1.5rem;
             font-weight: bold;
             color: white;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            border: 4px solid rgba(255,255,255,0.3);
-            backdrop-filter: blur(10px);
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+            margin: 0 auto 20px;
         }
 
         .profile-info h1 {
-            font-size: 3rem;
+            font-size: 2.2rem;
             margin-bottom: 10px;
-            text-shadow: 3px 3px 6px rgba(0,0,0,0.4);
-            background: linear-gradient(45deg, #ffffff, #f0f8ff, #e6f3ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #2c3e50;
+            font-weight: 400;
         }
 
         .subtitle {
-            font-size: 1.2rem;
-            opacity: 0.95;
+            font-size: 1.1rem;
+            color: #6c757d;
             margin-bottom: 20px;
             font-style: italic;
         }
 
         .description {
-            font-size: 1rem;
-            opacity: 0.9;
-            max-width: 900px;
+            max-width: 800px;
             margin: 0 auto;
-            line-height: 1.7;
-            background: rgba(255,255,255,0.1);
-            padding: 25px;
-            border-radius: 15px;
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255,255,255,0.2);
             text-align: left;
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            border: 1px solid #e9ecef;
+        }
+
+        .description p {
+            margin-bottom: 15px;
+            color: #495057;
         }
 
         .nav-tabs {
             display: flex;
             justify-content: center;
             margin-bottom: 30px;
-            background: rgba(255,255,255,0.15);
-            border-radius: 20px;
+            background: white;
+            border-radius: 8px;
             padding: 8px;
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255,255,255,0.2);
-            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            border: 1px solid #e9ecef;
         }
 
         .tab-btn {
-            padding: 15px 30px;
+            padding: 12px 24px;
             border: none;
             background: transparent;
-            color: white;
+            color: #6c757d;
             cursor: pointer;
-            border-radius: 15px;
-            transition: all 0.3s ease;
-            font-weight: 600;
-            font-size: 1rem;
-            position: relative;
-            overflow: hidden;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            font-weight: 500;
+            font-size: 0.95rem;
+            font-family: inherit;
         }
 
-        .tab-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s;
-        }
-
-        .tab-btn:hover::before {
-            left: 100%;
+        .tab-btn:hover {
+            background: #f8f9fa;
+            color: #495057;
         }
 
         .tab-btn.active {
-            background: rgba(255,255,255,0.25);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-            transform: translateY(-2px);
+            background: #34495e;
+            color: white;
         }
 
         .tab-content {
             display: none;
-            background: rgba(255,255,255,0.95);
-            border-radius: 25px;
+            background: white;
+            border-radius: 8px;
             padding: 30px;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255,255,255,0.3);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            border: 1px solid #e9ecef;
         }
 
         .tab-content.active {
             display: block;
-            animation: slideUp 0.6s ease;
-        }
-
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
         }
 
         .calendar-container {
             display: grid;
-            grid-template-columns: 1fr 380px;
+            grid-template-columns: 1fr 350px;
             gap: 30px;
             align-items: start;
         }
 
         .calendar-section {
-            background: linear-gradient(135deg, #ffffff, #f8fafc);
-            border-radius: 20px;
+            background: white;
+            border-radius: 8px;
             padding: 25px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            border: 1px solid rgba(255,255,255,0.8);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .calendar-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            border: 1px solid #e9ecef;
         }
 
         .calendar-header {
@@ -206,7 +147,6 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 25px;
-            padding: 0 10px;
             flex-wrap: wrap;
             gap: 15px;
         }
@@ -218,125 +158,106 @@
         }
 
         .nav-btn {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: #34495e;
             color: white;
             border: none;
-            padding: 12px 18px;
-            border-radius: 12px;
+            padding: 10px 16px;
+            border-radius: 6px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 1rem;
-            font-weight: 600;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            transition: all 0.2s ease;
+            font-size: 0.9rem;
+            font-weight: 500;
         }
 
         .nav-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
-        }
-
-        .nav-btn:active {
-            transform: translateY(-1px);
+            background: #2c3e50;
         }
 
         .month-year {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #2d3748;
-            min-width: 200px;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #2c3e50;
+            min-width: 180px;
             text-align: center;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
         }
 
         .year-selector {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
         }
 
         .year-input {
-            background: linear-gradient(135deg, #f7fafc, #edf2f7);
-            border: 2px solid #e2e8f0;
-            border-radius: 10px;
-            padding: 8px 12px;
-            font-size: 1rem;
-            width: 80px;
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            padding: 6px 10px;
+            font-size: 0.9rem;
+            width: 70px;
             text-align: center;
-            font-weight: 600;
-            transition: all 0.2s ease;
+            font-weight: 500;
         }
 
         .year-input:focus {
             outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            border-color: #34495e;
+            box-shadow: 0 0 0 2px rgba(52, 73, 94, 0.1);
         }
 
         .date-jump {
             display: flex;
             align-items: center;
-            gap: 10px;
-            margin-left: 15px;
+            gap: 8px;
         }
 
         .date-input {
-            background: linear-gradient(135deg, #f7fafc, #edf2f7);
-            border: 2px solid #e2e8f0;
-            border-radius: 10px;
-            padding: 8px 12px;
-            font-size: 0.9rem;
-            transition: all 0.2s ease;
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            padding: 6px 10px;
+            font-size: 0.85rem;
         }
 
         .date-input:focus {
             outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            border-color: #34495e;
+            box-shadow: 0 0 0 2px rgba(52, 73, 94, 0.1);
         }
 
         .jump-btn {
-            background: linear-gradient(135deg, #48bb78, #38a169);
+            background: #28a745;
             color: white;
             border: none;
-            padding: 8px 15px;
-            border-radius: 8px;
+            padding: 6px 12px;
+            border-radius: 4px;
             cursor: pointer;
-            font-size: 0.9rem;
-            font-weight: 600;
-            transition: all 0.2s ease;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: background 0.2s ease;
         }
 
         .jump-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(72, 187, 120, 0.3);
+            background: #218838;
         }
 
         .calendar {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
-            gap: 8px;
-            background: rgba(255,255,255,0.9);
-            border-radius: 20px;
-            padding: 20px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.12);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.2);
+            gap: 1px;
+            background: #dee2e6;
+            border-radius: 8px;
+            overflow: hidden;
         }
 
         .day-header {
             text-align: center;
             padding: 12px 8px;
-            font-weight: 800;
+            font-weight: 600;
             font-size: 0.85rem;
-            color: #6366f1;
-            background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+            color: #495057;
+            background: #f8f9fa;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            border-radius: 10px;
-            border: 1px solid rgba(99, 102, 241, 0.1);
+            letter-spacing: 0.5px;
         }
 
         .day {
@@ -345,135 +266,100 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.2s ease;
             position: relative;
-            background: #ffffff;
-            font-size: 0.95rem;
-            font-weight: 600;
-            min-height: 48px;
-            border: 1px solid #e5e7eb;
-            border-radius: 12px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            background: white;
+            font-size: 0.9rem;
+            font-weight: 500;
+            min-height: 45px;
         }
 
         .day:hover {
-            background: linear-gradient(135deg, #e6fffa, #b2f5ea);
-            transform: scale(1.1);
-            z-index: 2;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-            border-radius: 8px;
+            background: #e9ecef;
         }
 
         .day.other-month {
-            color: #a0aec0;
-            background: linear-gradient(135deg, #f7fafc, #edf2f7);
+            color: #adb5bd;
+            background: #f8f9fa;
         }
 
         .day.other-month:hover {
-            background: linear-gradient(135deg, #edf2f7, #e2e8f0);
+            background: #e9ecef;
         }
 
         .day.has-entry {
-            background: linear-gradient(135deg, #48bb78, #38a169);
-            color: white;
-            font-weight: 700;
-            box-shadow: 0 4px 15px rgba(72, 187, 120, 0.3);
+            background: #d4edda;
+            color: #155724;
+            font-weight: 600;
         }
 
         .day.has-entry:hover {
-            background: linear-gradient(135deg, #38a169, #2f855a);
-            box-shadow: 0 8px 25px rgba(72, 187, 120, 0.4);
+            background: #c3e6cb;
         }
 
         .day.today {
-            border: 3px solid #f56565;
-            font-weight: 900;
-            animation: todayPulse 2s infinite;
-        }
-
-        @keyframes todayPulse {
-            0%, 100% { border-color: #f56565; }
-            50% { border-color: #fc8181; }
+            border: 2px solid #dc3545;
+            font-weight: 700;
         }
 
         .day.selected {
-            background: linear-gradient(135deg, #667eea, #764ba2) !important;
+            background: #34495e !important;
             color: white !important;
-            font-weight: 900;
-            transform: scale(1.15);
-            z-index: 3;
-            border-radius: 8px;
-            box-shadow: 0 12px 30px rgba(102, 126, 234, 0.4);
+            font-weight: 700;
         }
 
         .entry-count {
             position: absolute;
-            top: 3px;
-            right: 3px;
-            background: linear-gradient(135deg, #f56565, #e53e3e);
+            top: 2px;
+            right: 2px;
+            background: #dc3545;
             color: white;
             border-radius: 50%;
-            width: 18px;
-            height: 18px;
+            width: 16px;
+            height: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.75rem;
-            font-weight: 900;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            font-size: 0.7rem;
+            font-weight: 700;
         }
 
         .activity-panel {
-            background: linear-gradient(135deg, #ffffff, #f8fafc);
-            border-radius: 20px;
+            background: white;
+            border-radius: 8px;
             padding: 25px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
             position: sticky;
             top: 20px;
-            border: 1px solid rgba(255,255,255,0.8);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .activity-panel::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+            border: 1px solid #e9ecef;
         }
 
         .activity-header {
-            display: flex;
-            align-items: center;
-            gap: 15px;
             margin-bottom: 20px;
             padding-bottom: 15px;
-            border-bottom: 3px solid #e2e8f0;
+            border-bottom: 1px solid #e9ecef;
         }
 
         .activity-date {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: #2d3748;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 5px;
         }
 
         .activity-day {
-            font-size: 1rem;
-            color: #4a5568;
-            background: linear-gradient(135deg, #e6fffa, #b2f5ea);
-            padding: 6px 12px;
-            border-radius: 15px;
-            font-weight: 600;
+            font-size: 0.9rem;
+            color: #6c757d;
+            background: #f8f9fa;
+            padding: 4px 8px;
+            border-radius: 4px;
+            display: inline-block;
+            font-weight: 500;
         }
 
         .activity-content {
-            max-height: 450px;
+            max-height: 400px;
             overflow-y: auto;
-            scrollbar-width: thin;
-            scrollbar-color: #cbd5e0 transparent;
         }
 
         .activity-content::-webkit-scrollbar {
@@ -481,40 +367,27 @@
         }
 
         .activity-content::-webkit-scrollbar-track {
-            background: transparent;
+            background: #f8f9fa;
         }
 
         .activity-content::-webkit-scrollbar-thumb {
-            background: linear-gradient(135deg, #cbd5e0, #a0aec0);
+            background: #dee2e6;
             border-radius: 3px;
         }
 
         .learning-item {
-            margin-bottom: 15px;
-            padding: 18px 20px;
-            background: linear-gradient(135deg, #f7fafc, #edf2f7);
-            border-radius: 12px;
-            border-left: 5px solid #667eea;
-            font-size: 1rem;
-            line-height: 1.6;
+            margin-bottom: 12px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            border-left: 4px solid #34495e;
+            font-size: 0.95rem;
+            line-height: 1.5;
             transition: all 0.2s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .learning-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 5px;
-            height: 100%;
-            background: linear-gradient(135deg, #667eea, #764ba2);
         }
 
         .learning-item:hover {
-            transform: translateX(5px);
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            background: #e9ecef;
         }
 
         .learning-item:last-child {
@@ -523,131 +396,108 @@
 
         .no-activity {
             text-align: center;
-            color: #718096;
+            color: #6c757d;
             font-style: italic;
-            padding: 50px 25px;
-            background: linear-gradient(135deg, #f7fafc, #edf2f7);
-            border-radius: 15px;
-            border: 2px dashed #cbd5e0;
+            padding: 40px 20px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            border: 1px dashed #dee2e6;
         }
 
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 25px;
-            margin-top: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
         }
 
         .stat-card {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            padding: 30px;
-            border-radius: 20px;
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
             text-align: center;
-            position: relative;
-            overflow: hidden;
-            transition: transform 0.3s ease;
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
-        }
-
-        .stat-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
-            transform: rotate(45deg);
-            transition: all 0.6s;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            border: 1px solid #e9ecef;
+            transition: transform 0.2s ease;
         }
 
         .stat-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.4);
-        }
-
-        .stat-card:hover::before {
-            animation: shine 0.6s ease;
-        }
-
-        @keyframes shine {
-            0% { left: -50%; }
-            100% { left: 150%; }
+            transform: translateY(-2px);
         }
 
         .stat-number {
-            font-size: 2.5rem;
-            font-weight: 900;
+            font-size: 2.2rem;
+            font-weight: 700;
             margin-bottom: 8px;
+            color: #34495e;
         }
 
         .stat-label {
-            font-size: 1rem;
-            opacity: 0.95;
-            font-weight: 600;
+            font-size: 0.95rem;
+            color: #6c757d;
+            font-weight: 500;
         }
 
         .contributions {
-            margin-top: 35px;
+            margin-top: 30px;
         }
 
         .contributions h3 {
             margin-bottom: 20px;
-            color: #2d3748;
-            font-size: 1.3rem;
-            font-weight: 700;
+            color: #2c3e50;
+            font-size: 1.2rem;
+            font-weight: 600;
         }
 
         .contribution-graph {
             display: grid;
             grid-template-columns: repeat(53, 1fr);
-            gap: 3px;
-            margin-bottom: 20px;
+            gap: 2px;
+            margin-bottom: 15px;
             padding: 20px;
-            background: linear-gradient(135deg, #f7fafc, #edf2f7);
-            border-radius: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
         }
 
         .contribution-day {
-            width: 12px;
-            height: 12px;
-            border-radius: 3px;
-            background: #e2e8f0;
+            width: 10px;
+            height: 10px;
+            border-radius: 2px;
+            background: #e9ecef;
             cursor: pointer;
             transition: all 0.2s ease;
         }
 
         .contribution-day:hover {
-            transform: scale(1.3);
-            border-radius: 50%;
+            transform: scale(1.2);
         }
 
-        .contribution-day.level-1 { background: linear-gradient(135deg, #c6f6d5, #9ae6b4); }
-        .contribution-day.level-2 { background: linear-gradient(135deg, #9ae6b4, #68d391); }
-        .contribution-day.level-3 { background: linear-gradient(135deg, #68d391, #48bb78); }
-        .contribution-day.level-4 { background: linear-gradient(135deg, #48bb78, #38a169); }
+        .contribution-day.level-1 { background: #c3e6cb; }
+        .contribution-day.level-2 { background: #a3d3a8; }
+        .contribution-day.level-3 { background: #76c893; }
+        .contribution-day.level-4 { background: #52b788; }
 
         .contribution-legend {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            font-size: 0.9rem;
-            color: #4a5568;
-            font-weight: 600;
+            gap: 6px;
+            font-size: 0.85rem;
+            color: #6c757d;
+            font-weight: 500;
         }
 
         .legend-item {
-            width: 12px;
-            height: 12px;
-            border-radius: 3px;
+            width: 10px;
+            height: 10px;
+            border-radius: 2px;
         }
 
         @media (max-width: 1024px) {
             .calendar-container {
                 grid-template-columns: 1fr;
-                gap: 25px;
+                gap: 20px;
             }
             
             .activity-panel {
@@ -656,27 +506,16 @@
         }
 
         @media (max-width: 768px) {
-            .profile-section {
-                flex-direction: column;
-                text-align: center;
-            }
-            
             .profile-info h1 {
-                font-size: 2.2rem;
+                font-size: 1.8rem;
             }
             
             .calendar-header {
                 flex-direction: column;
-                gap: 20px;
+                gap: 15px;
             }
             
             .month-nav {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            
-            .date-jump {
-                margin-left: 0;
                 flex-wrap: wrap;
                 justify-content: center;
             }
@@ -687,7 +526,7 @@
             }
             
             .tab-btn {
-                padding: 12px 20px;
+                padding: 10px 16px;
                 font-size: 0.9rem;
             }
         }
@@ -699,25 +538,22 @@
             <div class="profile-section">
                 <div class="profile-avatar">AK</div>
                 <div class="profile-info">
-                    <h1>AK's Daily Learning Journal</h1>
-                    <p class="subtitle">Tracking Growth, Learning & Life's Beautiful Moments</p>
+                    <h1>Academic Learning Journal</h1>
+                    <p class="subtitle">A Systematic Approach to Personal Development & Knowledge Acquisition</p>
                 </div>
             </div>
             <div class="description">
-                <p><strong>Welcome to my personal growth sanctuary!</strong></p>
-                <br>
-                <p>I maintain a structured weekly tracker to monitor various aspects of my life, including daily activities, fitness, and technical learnings. This tracker helps me stay disciplined and consistent by logging key metrics such as time spent on studies, work, walking time, and other parameters. Additionally, I track my learning progress in AI/ML, networking, and Linux Kernel, ensuring steady improvement in my technical expertise.</p>
-                <br>
-                <p>By regularly reviewing my data, I analyze trends, optimize my routines, and make data-driven decisions to enhance productivity, health, and personal growth. I'm a dedicated individual tracking my personal and professional growth through this comprehensive journal. With a passion for continuous improvement, I document my experiences, learnings, and reflections to build a comprehensive record of my journey.</p>
-                <br>
-                <p>Along with tracking progress, I also capture pictures and videos of time spent with family and friends, preserving valuable memories while maintaining a balanced and fulfilling lifestyle. This journal is more than just data - it's a testament to growth, learning, and the beautiful moments that make life meaningful.</p>
+                <p><strong>Research-Based Learning Documentation</strong></p>
+                <p>This journal employs a systematic methodology for tracking personal and academic growth through structured data collection and analysis. The framework encompasses daily learning activities, technical skill development, and progress metrics across multiple domains including artificial intelligence, machine learning, network systems, and operating system kernels.</p>
+                <p>Through consistent documentation and periodic review, this system enables evidence-based assessment of learning patterns, identification of knowledge gaps, and optimization of study methodologies. The comprehensive approach includes quantitative metrics and qualitative reflections to support continuous improvement in academic and professional development.</p>
+                <p>Beyond academic pursuits, this journal maintains a holistic view of personal growth by documenting social interactions, physical wellness activities, and life experiences that contribute to overall development and well-being.</p>
             </div>
         </header>
 
         <div class="nav-tabs">
-            <button class="tab-btn active" onclick="showTab('calendar')">📅 Calendar View</button>
-            <button class="tab-btn" onclick="showTab('stats')">📊 Analytics</button>
-            <button class="tab-btn" onclick="showTab('today')">📝 Today's Progress</button>
+            <button class="tab-btn active" onclick="showTab(this, 'calendar')">📅 Calendar</button>
+            <button class="tab-btn" onclick="showTab(this, 'stats')">📊 Statistics</button>
+            <button class="tab-btn" onclick="showTab(this, 'today')">📝 Today</button>
         </div>
 
         <div id="calendar-tab" class="tab-content active">
@@ -725,16 +561,16 @@
                 <div class="calendar-section">
                     <div class="calendar-header">
                         <div class="month-nav">
-                            <button class="nav-btn" onclick="previousMonth()">⟵ Previous</button>
+                            <button class="nav-btn" onclick="previousMonth()">← Previous</button>
                             <div class="month-year" id="monthYear"></div>
-                            <button class="nav-btn" onclick="nextMonth()">Next ⟶</button>
+                            <button class="nav-btn" onclick="nextMonth()">Next →</button>
                         </div>
                         <div class="year-selector">
-                            <label for="yearInput" style="font-size: 1rem; color: #4a5568; font-weight: 600;">Year:</label>
+                            <label for="yearInput">Year:</label>
                             <input type="number" id="yearInput" class="year-input" min="2020" max="2030" onchange="changeYear()">
                         </div>
                         <div class="date-jump">
-                            <label for="dateInput" style="font-size: 0.9rem; color: #4a5568; font-weight: 600;">Jump to:</label>
+                            <label for="dateInput">Jump to:</label>
                             <input type="date" id="dateInput" class="date-input">
                             <button class="jump-btn" onclick="jumpToDate()">Go</button>
                         </div>
@@ -745,7 +581,7 @@
                 <div class="activity-panel">
                     <div id="activityContent">
                         <div class="no-activity">
-                            📅 Select a date to explore your learning adventures and growth milestones
+                            Select a date to view learning activities and progress entries
                         </div>
                     </div>
                 </div>
@@ -773,61 +609,56 @@
             </div>
             
             <div class="contributions">
-                <h3>📈 Learning Journey Visualization (Last 12 Months)</h3>
+                <h3>Learning Activity Heatmap (Past 12 Months)</h3>
                 <div class="contribution-graph" id="contributionGraph"></div>
                 <div class="contribution-legend">
-                    <span>Less Active</span>
-                    <div class="legend-item" style="background: #e2e8f0;"></div>
+                    <span>Less</span>
+                    <div class="legend-item" style="background: #e9ecef;"></div>
                     <div class="legend-item level-1"></div>
                     <div class="legend-item level-2"></div>
                     <div class="legend-item level-3"></div>
                     <div class="legend-item level-4"></div>
-                    <span>Very Active</span>
+                    <span>More</span>
                 </div>
             </div>
         </div>
 
         <div id="today-tab" class="tab-content">
             <div id="todayContent">
-                <div class="no-activity">📝 No entries logged for today yet. Ready to capture today's learning adventures?</div>
+                <div class="no-activity">No entries recorded for today. Begin documenting your learning activities.</div>
             </div>
         </div>
     </div>
 
     <script>
-        let journalData = null;
+        let journalData = {
+            "metadata": {
+                "title": "AK's Academic Learning Journal",
+                "description": "Systematic documentation of learning activities and personal development",
+                "created": "2024-01-01",
+                "last_updated": "2024-12-22"
+            },
+            "entries": [
+                { "date": "2024-12-20", "learnings": ["Completed advanced machine learning algorithms coursework - focus on neural network optimization","Reviewed Linux kernel documentation for memory management subsystems","Analyzed network protocol implementations in distributed systems architecture"] },
+                { "date": "2024-12-19", "learnings": ["Implemented TCP/IP stack analysis for network performance optimization","Studied reinforcement learning applications in autonomous systems","Documented personal fitness tracking methodology and progress metrics"] },
+                { "date": "2024-12-18", "learnings": ["Deep dive into containerization technologies and orchestration frameworks","Analyzed time-series data patterns for personal productivity optimization","Completed weekly family activity documentation with photo archival"] },
+                { "date": "2024-12-15", "learnings": ["Advanced computer vision techniques for object detection and classification","Reviewed academic literature on distributed computing paradigms"] },
+                { "date": "2024-12-10", "learnings": ["Systematic analysis of learning patterns using statistical methods","Implementation of data visualization techniques for progress tracking"] }
+            ]
+        };
+
         let currentDate = new Date();
         let selectedDate = null;
 
-        async function loadData() {
-            try {
-                // Add timestamp to bust cache
-                const timestamp = new Date().getTime();
-                const response = await fetch(`journal-data.json?v=${timestamp}`);
-        
-                if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-                }
-        
-                journalData = await response.json();
-                console.log('Data loaded:', journalData);
-                updateCalendar();
-                updateStats();
-                updateToday();
-                } catch (error) {
-            console.error('Error loading data:', error);
-            }
-        }
+        function showTab(btn, tabName) {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
 
-        function showTab(tabName) {
-            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
-            
-            event.target.classList.add('active');
+            btn.classList.add('active');
             document.getElementById(tabName + '-tab').classList.add('active');
         }
 
-        function updateCalendar() {
+        function updateCalendar() {            
             const calendar = document.getElementById('calendar');
             const monthYear = document.getElementById('monthYear');
             const yearInput = document.getElementById('yearInput');
@@ -882,7 +713,6 @@
                 if (entry) {
                     dayElement.classList.add('has-entry');
                     
-                    // Add entry count indicator
                     const countElement = document.createElement('div');
                     countElement.className = 'entry-count';
                     countElement.textContent = entry.learnings.length;
@@ -894,58 +724,11 @@
             }
         }
 
-        // function selectDate(date, entry) {
-        //     document.querySelectorAll('.day.selected').forEach(day => 
-        //         day.classList.remove('selected')
-        //     );
-            
-        //     // Add selection to clicked day
-        //     event.target.classList.add('selected');
-            
-        //     selectedDate = date;
-        //     const activityContent = document.getElementById('activityContent');
-            
-        //     const dateStr = date.toLocaleDateString('en-US', { 
-        //         weekday: 'long', 
-        //         year: 'numeric', 
-        //         month: 'long', 
-        //         day: 'numeric' 
-        //     });
-
-        //     if (entry) {
-        //         activityContent.innerHTML = `
-        //             <div class="activity-header">
-        //                 <div class="activity-date">${dateStr}</div>
-        //                 <div class="activity-day">${entry.learnings.length} achievement${entry.learnings.length !== 1 ? 's' : ''}</div>
-        //             </div>
-        //             <div class="activity-content">
-        //                 ${entry.learnings.map((learning, index) => 
-        //                     `<div class="learning-item">${index + 1}. ${learning}</div>`
-        //                 ).join('')}
-        //             </div>
-        //         `;
-        //     } else {
-        //         activityContent.innerHTML = `
-        //             <div class="activity-header">
-        //                 <div class="activity-date">${dateStr}</div>
-        //                 <div class="activity-day">No entries</div>
-        //             </div>
-        //             <div class="no-activity">
-        //                 📝 No learning activities recorded for this date.<br><br>
-        //                 <strong>Ready to add your daily learnings?</strong><br>
-        //                 Update your JSON file to track your incredible growth journey!
-        //             </div>
-        //         `;
-        //     }
-        // }
-
         function selectDate(date, entry) {
-            // Remove previous selection
             document.querySelectorAll('.day.selected').forEach(day => 
                 day.classList.remove('selected')
             );
             
-            // Add selection to clicked day
             event.target.classList.add('selected');
             
             selectedDate = date;
@@ -957,12 +740,12 @@
                 month: 'long', 
                 day: 'numeric' 
             });
-        
+
             if (entry) {
                 activityContent.innerHTML = `
                     <div class="activity-header">
                         <div class="activity-date">${dateStr}</div>
-                        <div class="activity-day">${entry.learnings.length} achievement${entry.learnings.length !== 1 ? 's' : ''}</div>
+                        <div class="activity-day">${entry.learnings.length} learning${entry.learnings.length !== 1 ? 's' : ''} documented</div>
                     </div>
                     <div class="activity-content">
                         ${entry.learnings.map((learning, index) => 
@@ -974,17 +757,15 @@
                 activityContent.innerHTML = `
                     <div class="activity-header">
                         <div class="activity-date">${dateStr}</div>
-                        <div class="activity-day">No entries</div>
+                        <div class="activity-day">No documented entries</div>
                     </div>
                     <div class="no-activity">
-                        📝 No learning activities recorded for this date.<br><br>
-                        <strong>Ready to add your daily learnings?</strong><br>
-                        Update your JSON file to track your incredible growth journey!
+                        No learning activities documented for this date.<br><br>
+                        Update the journal data to record daily learning progress and achievements.
                     </div>
                 `;
             }
         }
-
 
         function previousMonth() {
             currentDate.setMonth(currentDate.getMonth() - 1);
@@ -1012,7 +793,6 @@
                 currentDate = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), 1);
                 updateCalendar();
                 
-                // Auto-select the specific date
                 setTimeout(() => {
                     const dateStr = dateInput.value;
                     const entry = journalData.entries.find(e => e.date === dateStr);
@@ -1075,7 +855,6 @@
             
             document.getElementById('thisMonth').textContent = thisMonth;
 
-            // Update contribution graph
             updateContributionGraph();
         }
 
@@ -1085,7 +864,7 @@
 
             const today = new Date();
             const startDate = new Date(today);
-            startDate.setDate(startDate.getDate() - 364); // Last 365 days
+            startDate.setDate(startDate.getDate() - 364);
 
             for (let i = 0; i < 365; i++) {
                 const currentDay = new Date(startDate);
@@ -1100,7 +879,7 @@
                 if (entry) {
                     const level = Math.min(entry.learnings.length, 4);
                     dayElement.classList.add(`level-${level}`);
-                    dayElement.title = `${dateStr}: ${entry.learnings.length} learnings`;
+                    dayElement.title = `${dateStr}: ${entry.learnings.length} learning activities`;
                 } else {
                     dayElement.title = `${dateStr}: No entries`;
                 }
@@ -1109,43 +888,88 @@
             }
         }
 
-        // function updateToday() {
-        //     const today = new Date().toISOString().split('T')[0];
-        //     const todayEntry = journalData.entries.find(e => e.date === today);
-        //     const todayContent = document.getElementById('todayContent');
-            
-        //     if (todayEntry) {
-        //         todayContent.innerHTML = `
-        //             <div class="activity-panel">
-        //                 <div class="activity-header">
-        //                     <div class="activity-date">✨ Today's Learning Adventures</div>
-        //                     <div class="activity-day">${todayEntry.learnings.length} achievement${todayEntry.learnings.length !== 1 ? 's' : ''} unlocked!</div>
-        //                 </div>
-        //                 <div class="activity-content">
-        //                     ${todayEntry.learnings.map((learning, index) => 
-        //                         `<div class="learning-item">${index + 1}. ${learning}</div>`
-        //                     ).join('')}
-        //                 </div>
-        //             </div>
-        //         `;
-        //     } else {
-        //         todayContent.innerHTML = `
-        //             <div class="no-activity">
-        //                 🌟 <strong>Ready to make today amazing?</strong><br><br>
-        //                 No entries logged for today yet. Every day is a new opportunity to learn, grow, and create beautiful memories!<br><br>
-        //                 <em>Add your learnings to the JSON file to start tracking today's incredible journey!</em>
-        //             </div>
-        //         `;
-        //     }
-        // }
-
-        // Initialize the app
-        document.addEventListener('DOMContentLoaded', function() {
-            loadData();
-            
-            // Set default date input to today
+        function updateToday() {
             const today = new Date().toISOString().split('T')[0];
-            document.getElementById('dateInput').value = today;
+            const todayEntry = journalData.entries.find(e => e.date === today);
+            const todayContent = document.getElementById('todayContent');
+            
+            const todayDateStr = new Date().toLocaleDateString('en-US', { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            });
+
+            if (todayEntry) {
+                todayContent.innerHTML = `
+                    <div class="activity-header">
+                        <div class="activity-date">Today - ${todayDateStr}</div>
+                        <div class="activity-day">${todayEntry.learnings.length} learning${todayEntry.learnings.length !== 1 ? 's' : ''} documented</div>
+                    </div>
+                    <div class="activity-content">
+                        ${todayEntry.learnings.map((learning, index) => 
+                            `<div class="learning-item">${index + 1}. ${learning}</div>`
+                        ).join('')}
+                    </div>
+                `;
+            } else {
+                todayContent.innerHTML = `
+                    <div class="activity-header">
+                        <div class="activity-date">Today - ${todayDateStr}</div>
+                        <div class="activity-day">No entries yet</div>
+                    </div>
+                    <div class="no-activity">
+                        No learning activities documented for today.<br><br>
+                        Start your learning journey by updating the journal data with today's activities and insights.
+                    </div>
+                `;
+            }
+        }
+
+        async function loadData() {
+            try {
+                const response = await fetch('journal-data.json');
+                if (!response.ok) throw new Error('Network response was not ok');
+                journalData = await response.json();
+                console.log('Loaded data:', journalData);
+        
+                updateCalendar();
+                updateStats();
+                updateToday();
+        
+                // Now it is safe to auto-select today's entry
+                autoSelectToday();
+            } catch (error) {
+                console.error('Error loading data:', error);
+            }
+        }
+        
+        function autoSelectToday() {
+            const today = new Date();
+            const todayStr = today.toISOString().split('T')[0];
+            const todayEntry = journalData.entries.find(e => e.date === todayStr);
+        
+            if (todayEntry) {
+                setTimeout(() => {
+                    const dayElements = document.querySelectorAll('.day');
+                    dayElements.forEach(dayEl => {
+                        if (dayEl.textContent == today.getDate() &&
+                            !dayEl.classList.contains('other-month') &&
+                            dayEl.classList.contains('today')) {
+                            dayEl.click();
+                        }
+                    });
+                }, 100);
+            }
+        }
+
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const dateInput = document.getElementById('dateInput');
+            const today = new Date();
+            dateInput.value = today.toISOString().split('T')[0];
+        
+            loadData();
         });
     </script>
 </body>
