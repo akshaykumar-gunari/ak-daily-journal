@@ -2,8 +2,9 @@ name: Daily Journal Update
 
 on:
   schedule:
-    - cron: '*/1 * * * *'  # For testing: every 1 min
+    # - cron: '*/1 * * * *'  # For testing: every 1 min
     # - cron: '0 0 * * *'  # For daily
+    - cron: '30 18 * * *'
   workflow_dispatch:
 
 permissions:
