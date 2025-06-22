@@ -461,6 +461,16 @@
             border: 1px solid #e9ecef;
         }
 
+        .contribution-months {
+            display: grid;
+            grid-template-columns: repeat(53, 1fr);
+            gap: 2px;
+            margin-bottom: 4px;
+            font-size: 0.7rem;
+            color: #6c757d;
+            text-align: center;
+        }
+
         .contribution-day {
             width: 10px;
             height: 10px;
@@ -613,6 +623,8 @@
 
       <div class="contributions">
         <h3>Learning Activity Heatmap (Past 12 Months)</h3>
+        <!-- <div class="contribution-graph" id="contributionGraph"></div> -->
+        <div class="contribution-months" id="contributionMonths"></div>
         <div class="contribution-graph" id="contributionGraph"></div>
         <div class="contribution-legend">
           <span>Less</span>
@@ -749,43 +761,6 @@
       }
     }
 
-    // function jumpToDate() {
-    //   const val = document.getElementById('dateInput').value;
-    //   if (val) {
-    //     const parts = val.split('-').map(Number);
-    //     const d = new Date(parts[0], parts[1] - 1, parts[2]);
-    //     currentDate = new Date(d.getFullYear(), d.getMonth(), 1);
-    //     updateCalendar();
-    //     setTimeout(() => {
-    //       const entry = journalData.entries.find(e => e.date === val);
-    //       const dayEls = document.querySelectorAll('.day');
-    //       dayEls.forEach(el => {
-    //         if (el.textContent == d.getDate() && !el.classList.contains('other-month')) {
-    //           el.click();
-    //         }
-    //       });
-    //     }, 100);
-    //   }
-    // }
-
-    // function jumpToDate() {
-    //   const val = document.getElementById('dateInput').value;
-    //   if (val) {
-    //     const parts = val.split('-').map(Number);
-    //     const d = new Date(parts[0], parts[1] - 1, parts[2]);
-    //     currentDate = new Date(d.getFullYear(), d.getMonth(), 1);
-    //     updateCalendar();
-    
-    //     // After calendar updates, select the date
-    //     const dayEls = document.querySelectorAll('.day');
-    //     dayEls.forEach(el => {
-    //       if (parseInt(el.textContent) === d.getDate() && !el.classList.contains('other-month')) {
-    //         el.click();
-    //       }
-    //     });
-    //   }
-    // }
-
     function jumpToDate() {
       const val = document.getElementById('dateInput').value;
       if (val) {
@@ -816,17 +791,49 @@
       updateContributionGraph();
     }
 
+    // function updateContributionGraph() {
+    //   const graph = document.getElementById('contributionGraph');
+    //   graph.innerHTML = '';
+    //   const today = new Date();
+    //   const start = new Date(today);
+    //   start.setDate(start.getDate() - 364);
+    //   for (let i = 0; i < 365; i++) {
+    //     const d = new Date(start);
+    //     d.setDate(start.getDate() + i);
+    //     const ds = formatDateYMD(d);
+    //     const e = journalData.entries.find(x => x.date === ds);
+    //     const el = document.createElement('div');
+    //     el.className = 'contribution-day';
+    //     if (e) {
+    //       const level = Math.min(e.learnings.length, 4);
+    //       el.classList.add(`level-${level}`);
+    //       el.title = `${ds}: ${e.learnings.length} activities`;
+    //     } else {
+    //       el.title = `${ds}: No entries`;
+    //     }
+    //     graph.appendChild(el);
+    //   }
+    // }
+
     function updateContributionGraph() {
       const graph = document.getElementById('contributionGraph');
+      const months = document.getElementById('contributionMonths');
       graph.innerHTML = '';
+      months.innerHTML = '';
+    
       const today = new Date();
       const start = new Date(today);
       start.setDate(start.getDate() - 364);
+    
+      let currentMonth = null;
+    
       for (let i = 0; i < 365; i++) {
         const d = new Date(start);
         d.setDate(start.getDate() + i);
         const ds = formatDateYMD(d);
         const e = journalData.entries.find(x => x.date === ds);
+    
+        // Build day cell
         const el = document.createElement('div');
         el.className = 'contribution-day';
         if (e) {
@@ -837,8 +844,19 @@
           el.title = `${ds}: No entries`;
         }
         graph.appendChild(el);
+    
+        // Add month label if first day of a month
+        if (d.getDate() === 1 || i === 0) {
+          const monthName = d.toLocaleString('default', { month: 'short' });
+          const span = document.createElement('div');
+          span.textContent = monthName;
+          span.style.gridColumn = `span 4`; // approx 4 columns for each month (adjust if needed)
+          months.appendChild(span);
+          currentMonth = d.getMonth();
+        }
       }
     }
+
 
     function updateToday() {
       const todayStr = formatDateYMD(new Date());
