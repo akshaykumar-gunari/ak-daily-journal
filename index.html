@@ -471,6 +471,7 @@
             text-align: center;
         }
 
+
         .contribution-day {
             width: 10px;
             height: 10px;
@@ -815,6 +816,48 @@
     //   }
     // }
 
+    // function updateContributionGraph() {
+    //   const graph = document.getElementById('contributionGraph');
+    //   const months = document.getElementById('contributionMonths');
+    //   graph.innerHTML = '';
+    //   months.innerHTML = '';
+    
+    //   const today = new Date();
+    //   const start = new Date(today);
+    //   start.setDate(start.getDate() - 364);
+    
+    //   let currentMonth = null;
+    
+    //   for (let i = 0; i < 365; i++) {
+    //     const d = new Date(start);
+    //     d.setDate(start.getDate() + i);
+    //     const ds = formatDateYMD(d);
+    //     const e = journalData.entries.find(x => x.date === ds);
+    
+    //     // Build day cell
+    //     const el = document.createElement('div');
+    //     el.className = 'contribution-day';
+    //     if (e) {
+    //       const level = Math.min(e.learnings.length, 4);
+    //       el.classList.add(`level-${level}`);
+    //       el.title = `${ds}: ${e.learnings.length} activities`;
+    //     } else {
+    //       el.title = `${ds}: No entries`;
+    //     }
+    //     graph.appendChild(el);
+    
+    //     // Add month label if first day of a month
+    //     if (d.getDate() === 1 || i === 0) {
+    //       const monthName = d.toLocaleString('default', { month: 'short' });
+    //       const span = document.createElement('div');
+    //       span.textContent = monthName;
+    //       span.style.gridColumn = `span 4`; // approx 4 columns for each month (adjust if needed)
+    //       months.appendChild(span);
+    //       currentMonth = d.getMonth();
+    //     }
+    //   }
+    // }
+
     function updateContributionGraph() {
       const graph = document.getElementById('contributionGraph');
       const months = document.getElementById('contributionMonths');
@@ -825,7 +868,7 @@
       const start = new Date(today);
       start.setDate(start.getDate() - 364);
     
-      let currentMonth = null;
+      let lastMonth = null;
     
       for (let i = 0; i < 365; i++) {
         const d = new Date(start);
@@ -833,7 +876,7 @@
         const ds = formatDateYMD(d);
         const e = journalData.entries.find(x => x.date === ds);
     
-        // Build day cell
+        // Create day block
         const el = document.createElement('div');
         el.className = 'contribution-day';
         if (e) {
@@ -845,17 +888,24 @@
         }
         graph.appendChild(el);
     
-        // Add month label if first day of a month
-        if (d.getDate() === 1 || i === 0) {
-          const monthName = d.toLocaleString('default', { month: 'short' });
-          const span = document.createElement('div');
-          span.textContent = monthName;
-          span.style.gridColumn = `span 4`; // approx 4 columns for each month (adjust if needed)
-          months.appendChild(span);
-          currentMonth = d.getMonth();
+        // Add month label at the start of its first week
+        const weekDay = d.getDay();
+        if (weekDay === 0) {  // Sunday → new week
+          if (d.getMonth() !== lastMonth) {
+            const monthName = d.toLocaleString('default', { month: 'short' });
+            const monthEl = document.createElement('div');
+            monthEl.textContent = monthName;
+            months.appendChild(monthEl);
+            lastMonth = d.getMonth();
+          } else {
+            const emptyEl = document.createElement('div');
+            emptyEl.textContent = '';
+            months.appendChild(emptyEl);
+          }
         }
       }
     }
+
 
 
     function updateToday() {
