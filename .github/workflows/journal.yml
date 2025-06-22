@@ -1,0 +1,40 @@
+name: Daily Journal Update
+
+on:
+  schedule:
+    - cron: '*/1 * * * *'  # For testing: every 1 min
+    # - cron: '0 0 * * *'  # For daily
+  workflow_dispatch:
+
+jobs:
+  update-journal:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v3
+
+    - name: Download daily_entry.txt from Google Drive
+      run: |
+        FILE_ID=1YADLMRhs7CjOgUEfVfhSsqqUfRxkMzc3
+        curl -L "https://drive.google.com/uc?export=download&id=$FILE_ID" -o data/new_entry.txt
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
+
+    - name: Print timestamp
+      run: date
+
+
+    - name: Run update script
+      run: python update_journal.py
+
+    - name: Commit updated JSON
+      run: |
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        git add journal.json
+        git commit -m "Update journal.json from Google Drive daily_entry.txt" || echo "No changes to commit"
+        git push
