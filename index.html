@@ -768,6 +768,24 @@
     //   }
     // }
 
+    // function jumpToDate() {
+    //   const val = document.getElementById('dateInput').value;
+    //   if (val) {
+    //     const parts = val.split('-').map(Number);
+    //     const d = new Date(parts[0], parts[1] - 1, parts[2]);
+    //     currentDate = new Date(d.getFullYear(), d.getMonth(), 1);
+    //     updateCalendar();
+    
+    //     // After calendar updates, select the date
+    //     const dayEls = document.querySelectorAll('.day');
+    //     dayEls.forEach(el => {
+    //       if (parseInt(el.textContent) === d.getDate() && !el.classList.contains('other-month')) {
+    //         el.click();
+    //       }
+    //     });
+    //   }
+    // }
+
     function jumpToDate() {
       const val = document.getElementById('dateInput').value;
       if (val) {
@@ -776,15 +794,20 @@
         currentDate = new Date(d.getFullYear(), d.getMonth(), 1);
         updateCalendar();
     
-        // After calendar updates, select the date
+        // After calendar updates, find matching day element
         const dayEls = document.querySelectorAll('.day');
         dayEls.forEach(el => {
-          if (parseInt(el.textContent) === d.getDate() && !el.classList.contains('other-month')) {
+          const dayNum = parseInt(el.childNodes[0]?.textContent || el.textContent, 10);
+          if (
+            dayNum === d.getDate() &&
+            !el.classList.contains('other-month')
+          ) {
             el.click();
           }
         });
       }
     }
+
 
 
     function updateStats() {
