@@ -748,6 +748,25 @@
       }
     }
 
+    // function jumpToDate() {
+    //   const val = document.getElementById('dateInput').value;
+    //   if (val) {
+    //     const parts = val.split('-').map(Number);
+    //     const d = new Date(parts[0], parts[1] - 1, parts[2]);
+    //     currentDate = new Date(d.getFullYear(), d.getMonth(), 1);
+    //     updateCalendar();
+    //     setTimeout(() => {
+    //       const entry = journalData.entries.find(e => e.date === val);
+    //       const dayEls = document.querySelectorAll('.day');
+    //       dayEls.forEach(el => {
+    //         if (el.textContent == d.getDate() && !el.classList.contains('other-month')) {
+    //           el.click();
+    //         }
+    //       });
+    //     }, 100);
+    //   }
+    // }
+
     function jumpToDate() {
       const val = document.getElementById('dateInput').value;
       if (val) {
@@ -755,17 +774,17 @@
         const d = new Date(parts[0], parts[1] - 1, parts[2]);
         currentDate = new Date(d.getFullYear(), d.getMonth(), 1);
         updateCalendar();
-        setTimeout(() => {
-          const entry = journalData.entries.find(e => e.date === val);
-          const dayEls = document.querySelectorAll('.day');
-          dayEls.forEach(el => {
-            if (el.textContent == d.getDate() && !el.classList.contains('other-month')) {
-              el.click();
-            }
-          });
-        }, 100);
+    
+        // After calendar updates, select the date
+        const dayEls = document.querySelectorAll('.day');
+        dayEls.forEach(el => {
+          if (parseInt(el.textContent) === d.getDate() && !el.classList.contains('other-month')) {
+            el.click();
+          }
+        });
       }
     }
+
 
     function updateStats() {
       document.getElementById('totalEntries').textContent = journalData.entries.length;
