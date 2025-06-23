@@ -22,6 +22,19 @@
         "- To Do Tasks: NIL.",
         "- Notes: NIL."
       ]
+    },
+    {
+      "date": "2025-06-23",
+      "day": "Monday",
+      "learnings": [
+        "- Technical Learning (Personal): NIL.",
+        "- Official Work: Some code bringup changes, fixed a PR, scheduled a meeting for Fan Driver Design and Implementation.",
+        "- Rest: Slept for around 6 hours (1 AM to 6 AM and 5PM to 6PM).",
+        "- Workout: No workout, just walked for around 2km.",
+        "- Food/Nutrition:  Breakfast: Upma, Lunch: Veg Choix Bowl, 1 Glass Banana Milkshake, 2 cups of Tea, Dinner: 1/2 Dal Kichidi.",
+        "- To Do Tasks: Plan to complete mini pc Bringup with ubuntu.",
+        "- Notes: NIL."
+      ]
     }
   ]
 }
