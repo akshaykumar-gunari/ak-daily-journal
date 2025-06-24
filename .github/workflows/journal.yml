@@ -4,7 +4,8 @@ on:
   schedule:
     # - cron: '*/1 * * * *'  # For testing: every 1 min
     # - cron: '0 0 * * *'  # For daily
-    - cron: '30 18 * * *'
+    # - cron: '30 18 * * *'
+    - cron: '0 */3 * * *' # Runs every 3 hours
   workflow_dispatch:
 
 permissions:
