@@ -1,56 +1,6 @@
 {
   "entries": [
     {
-      "date": "2025-06-21",
-      "day": "Saturday",
-      "learnings": [
-        "First day of my daily journal, though I had the template ready the previous day, did some changes in the look of it. Committed the template code.",
-        "Workout: Completed atleast 3km of Walking.",
-        "Travel: Street Storyss, Blossom Book House",
-        "Food: 1 Methi Paratha; 1 Glass Lassi; 1 Cup dry fruits & nuts; {Thai Veg Krapaw Dumplings, Butta Corn Ribs, 4 Cheese Palak Paneer Pizza, Tofu Nasi Goreng Sambal Rice Bowl}; 100ml Jaggery Filter Coffee 2L water."
-      ]
-    },
-    {
-      "date": "2025-06-22",
-      "day": "Sunday",
-      "learnings": [
-        "- Technical Learning (Personal): NIL.",
-        "- Official Work: Weekend.",
-        "- Rest: Slept around 8 hours (1 AM to 9 AM).",
-        "- Workout: No workout, just walked for around 2km.",
-        "- Food/Nutrition:  Breakfast: Poha, Lunch: Chapati and Green Gram Curry, \u00bd holige, 1 Glass Cold Coffee, \u2154 medium size pizza from Oven Story, 1 Glass Lassi.",
-        "- To Do Tasks: NIL.",
-        "- Notes: NIL."
-      ]
-    },
-    {
-      "date": "2025-06-23",
-      "day": "Monday",
-      "learnings": [
-        "- Technical Learning (Personal): NIL.",
-        "- Official Work: Some code bringup changes, fixed a PR, scheduled a meeting for Fan Driver Design and Implementation.",
-        "- Rest: Slept for around 6 hours (1 AM to 6 AM and 5PM to 6PM).",
-        "- Workout: No workout, just walked for around 2km.",
-        "- Food/Nutrition:  Breakfast: Upma, Lunch: Veg Choix Bowl, 1 Glass Banana Milkshake, 2 cups of Tea, Dinner: 1/2 Dal Kichidi.",
-        "- To Do Tasks: Plan to complete mini pc Bringup with ubuntu.",
-        "- Notes: NIL."
-      ]
-    },
-    {
-      "date": "2025-06-24",
-      "day": "Tuesday",
-      "learnings": [
-        "- Technical Learning (Personal): NIL.",
-        "- Official Work: Had a table review for driver design and implementation.",
-        "- Rest: Slept for around 5 hours (1 AM to 6 AM).",
-        "- Workout: No workout, 100 jumping jacks, just walked for around 2km.",
-        "- Food/Nutrition:  Breakfast: Single Idli and Oats Kichidi, Lunch: Veg Choix Bowl, 1 Glass Banana Milkshake, 1 cups of Tea, Dinner: Crispy Mashroom California Burrito.",
-        "- To Do Tasks: Plan to complete mini pc Bringup with ubuntu - Pending(1).",
-        "- Notes: NIL.",
-        "- Miscellaneous: Watched 6 episodes of Panchayat Season 4."
-      ]
-    }
-    {
       "date": "2025-06-25",
       "day": "Wednesday",
       "learnings": [
@@ -58,11 +8,11 @@
         "- Official Work: Brainstorming on bringup activities.",
         "- Rest: Slept for around 6 hours (12:20 AM to 6:20 AM).",
         "- Workout: No workout, just walked for around 2km.",
-        "- Food/Nutrition:  Breakfast: Poha, Lunch: Veg Choix Bowl, 2 cups of Tea and 1 cup Coffee, Dinner: 2 parathas @ Karma Foods, Avacado Juice.",
+        "- Food/Nutrition:  Breakfast: Poha, Lunch: Veg Choix Bowl, 2 cups of Tea and 1 cup Coffee, Dinner: 2 parathas @ Karma Foods.",
         "- To Do Tasks: Plan to complete mini pc Bringup with ubuntu - Pending(2).",
         "- Notes: NIL.",
         "- Miscellaneous: Watched remaining episodes of Panchayat Season 4."
       ]
-    },
+    }
   ]
 }
