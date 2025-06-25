@@ -1,31 +1,41 @@
 import json
 import sys
 
-def read_new_entry_txt(txt_file):
+def parse_entries_from_txt(txt_file):
     with open(txt_file, 'r') as file:
         lines = [line.strip() for line in file if line.strip()]
-    
-    entry = {"date": "", "day": "", "learnings": []}
-    
+
+    entries = []
+    current_entry = {"date": "", "day": "", "learnings": []}
+
     for line in lines:
         if line.startswith("Date:"):
-            entry["date"] = line.replace("Date:", "").strip()
+            if current_entry["date"]:  # Save previous entry before starting a new one
+                validate_entry(current_entry)
+                entries.append(current_entry)
+                current_entry = {"date": "", "day": "", "learnings": []}
+            current_entry["date"] = line.replace("Date:", "").strip()
         elif line.startswith("Day:"):
-            entry["day"] = line.replace("Day:", "").strip()
+            current_entry["day"] = line.replace("Day:", "").strip()
         elif line.startswith("Learnings:"):
             continue
         else:
-            entry["learnings"].append(line)
-    
-    # Validate required fields
+            current_entry["learnings"].append(line)
+
+    # Append the last entry
+    if current_entry["date"]:
+        validate_entry(current_entry)
+        entries.append(current_entry)
+
+    return entries
+
+def validate_entry(entry):
     if not entry["date"]:
-        raise ValueError("Date is missing in the TXT file.")
+        raise ValueError("Missing Date in one of the entries.")
     if not entry["day"]:
-        raise ValueError("Day is missing in the TXT file.")
+        raise ValueError(f"Missing Day for date {entry['date']}")
     if not entry["learnings"]:
-        raise ValueError("Learnings are missing in the TXT file.")
-    
-    return entry
+        raise ValueError(f"Missing Learnings for date {entry['date']}")
 
 def load_json_safe(json_file):
     try:
@@ -44,34 +54,39 @@ def find_entry_by_date(data, date):
             return i, entry
     return None, None
 
-def append_or_update_entry(json_file, new_entry):
+def append_or_update_entries(json_file, new_entries):
     data = load_json_safe(json_file)
-    
-    index, existing_entry = find_entry_by_date(data, new_entry["date"])
-    
-    if existing_entry:
-        if existing_entry.get("learnings") != new_entry.get("learnings"):
-            print(f"⚡ Updating learnings for date {new_entry['date']}.")
-            data["entries"][index]["learnings"] = new_entry["learnings"]
-        else:
-            print(f"✅ Entry for {new_entry['date']} already up-to-date. No changes made.")
-            return
-    else:
-        print(f"✅ Adding new entry for {new_entry['date']}.")
-        data.setdefault("entries", []).append(new_entry)
+    updated = False
 
-    with open(json_file, 'w') as file:
-        json.dump(data, file, indent=2)
-    
-    print(f"💾 Changes saved to {json_file}")
+    for new_entry in new_entries:
+        index, existing_entry = find_entry_by_date(data, new_entry["date"])
+        if existing_entry:
+            if existing_entry.get("learnings") != new_entry.get("learnings"):
+                print(f"⚡ Updating learnings for {new_entry['date']}.")
+                data["entries"][index]["learnings"] = new_entry["learnings"]
+                updated = True
+            else:
+                print(f"✅ Entry for {new_entry['date']} already up-to-date.")
+        else:
+            print(f"✅ Adding new entry for {new_entry['date']}.")
+            data["entries"].append(new_entry)
+            updated = True
+
+    if updated:
+        with open(json_file, 'w') as file:
+            json.dump(data, file, indent=2)
+        print(f"💾 Changes saved to {json_file}")
+    else:
+        print("🚫 No changes needed. All entries are already up-to-date.")
 
 if __name__ == "__main__":
     json_file = 'journal-data.json'
     txt_file = 'data/new_entry.txt'
-    
+
     try:
-        new_entry = read_new_entry_txt(txt_file)
-        append_or_update_entry(json_file, new_entry)
+        entries = parse_entries_from_txt(txt_file)
+        append_or_update_entries(json_file, entries)
     except Exception as e:
         print(f"❌ Error: {e}")
         sys.exit(1)
+

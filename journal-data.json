@@ -37,20 +37,6 @@
       ]
     },
     {
-      "date": "2025-06-25",
-      "day": "Wednesday",
-      "learnings": [
-        "- Technical Learning (Personal): NIL.",
-        "- Official Work: Brainstorming on bringup activities.",
-        "- Rest: Slept for around 6 hours (12:20 AM to 6:20 AM).",
-        "- Workout: No workout, just walked for around 2km.",
-        "- Food/Nutrition:  Breakfast: Poha, Lunch: Veg Choix Bowl, 2 cups of Tea and 1 cup Coffee, Dinner: 2 parathas @ Karma Foods.",
-        "- To Do Tasks: Plan to complete mini pc Bringup with ubuntu - Pending(2).",
-        "- Notes: NIL.",
-        "- Miscellaneous: Watched remaining episodes of Panchayat Season 4."
-      ]
-    },
-    {
       "date": "2025-06-24",
       "day": "Tuesday",
       "learnings": [
@@ -64,5 +50,19 @@
         "- Miscellaneous: Watched 6 episodes of Panchayat Season 4."
       ]
     }
+    {
+      "date": "2025-06-25",
+      "day": "Wednesday",
+      "learnings": [
+        "- Technical Learning (Personal): NIL.",
+        "- Official Work: Brainstorming on bringup activities.",
+        "- Rest: Slept for around 6 hours (12:20 AM to 6:20 AM).",
+        "- Workout: No workout, just walked for around 2km.",
+        "- Food/Nutrition:  Breakfast: Poha, Lunch: Veg Choix Bowl, 2 cups of Tea and 1 cup Coffee, Dinner: 2 parathas @ Karma Foods, Avacado Juice.",
+        "- To Do Tasks: Plan to complete mini pc Bringup with ubuntu - Pending(2).",
+        "- Notes: NIL.",
+        "- Miscellaneous: Watched remaining episodes of Panchayat Season 4."
+      ]
+    },
   ]
 }
