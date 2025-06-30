@@ -77,6 +77,20 @@
         "- Notes: NIL.",
         "- Miscellaneous: NIL."
       ]
+    },
+    {
+      "date": "2025-06-30",
+      "day": "Monday",
+      "learnings": [
+        "- Technical Learning (Personal): NIL.",
+        "- Official Work: Checking on Fan driver implementation for new NPI.",
+        "- Rest: Slept for around 7 hours (12:00 AM to 6:00 AM + 4:00 PM - 5:00 PM).",
+        "- Workout: No workout, just walked for around 2km.",
+        "- Food/Nutrition:  Breakfast: Upma, Lunch: Veg Choix Bowl, Milk: 2 Cups, Tea: 1 Cup, Dinner: .",
+        "- To Do Tasks: Plan to complete mini pc Bringup with ubuntu - Pending(3).",
+        "- Notes: NIL.",
+        "- Miscellaneous: NIL."
+      ]
     }
   ]
 }
