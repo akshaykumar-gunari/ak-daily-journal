@@ -105,6 +105,20 @@
         "- Notes: NIL.",
         "- Miscellaneous: NIL."
       ]
+    },
+    {
+      "date": "2025-07-04",
+      "day": "Thursday",
+      "learnings": [
+        "- Technical Learning (Personal): Started with the basics of I2C Protocol.",
+        "- Official Work: Checking on Fan driver implementation for new NPI.",
+        "- Rest: Slept for around 7:30 hours (2:00 AM to 8:30 AM + 4:00 PM - 5:00 PM).",
+        "- Workout: No workout, just walked for around 2km.",
+        "- Food/Nutrition: Breakfast: Masala Dosa, Lunch: Karma Mini Meals, Tea: 2 Cups, Dinner: Dominos Pizza (1/3 Large).",
+        "- To Do Tasks: Plan to complete mini pc Bringup with ubuntu - Completed.",
+        "- Notes: Upstreamed my first ever patch for Linux Kernel (Was just a fix to typo patch). Here is the link: https://lore.kernel.org/lkml/20250703184659.3110-1-akshaygunari@gmail.com/",
+        "- Miscellaneous: NIL."
+      ]
     }
   ]
 }
